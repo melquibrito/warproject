@@ -1,5 +1,8 @@
 package jogadores;
 
+import java.util.ArrayList;
+import territorios.Territorio;
+
 public final class Jogador {
     
     public enum estado {
@@ -13,9 +16,10 @@ public final class Jogador {
     private String nome;
     private int exercitos;
     private int avioes;
+    private final ArrayList<Territorio> territoriosOcupados = new ArrayList();
     
     public void sairDaPartida() {
-        
+        Estado.desconectar(this);
     }
     
     protected void mudarEstado(estado estado) {
