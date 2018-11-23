@@ -1,5 +1,6 @@
 package territorios.europa;
 
+import territorios.Tag;
 import territorios.Territorio;
 
 public final class Suecia extends Territorio {
@@ -20,9 +21,15 @@ public final class Suecia extends Territorio {
         return Suecia.getInstance();
     }
 
+    
+    @Override
+    public Tag setTag() {
+        return Tag.SUECIA;
+    }
+    
     @Override
     public String toString() {
-        return "Suecia";
+        return "Suécia";
     }
     
 }

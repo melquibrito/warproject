@@ -1,6 +1,6 @@
 package territorios.africa;
 
-import territorios.Territorio;
+import territorios.*;
 
 public final class Argelia extends Territorio {
     
@@ -22,6 +22,11 @@ public final class Argelia extends Territorio {
         return Argelia.getInstance();
     }
 
+    @Override
+    public Tag setTag() {
+        return Tag.ARGELIA;
+    }
+    
     @Override
     public String toString() {
         return "Argelia";

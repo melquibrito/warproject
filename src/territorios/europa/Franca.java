@@ -24,6 +24,11 @@ public final class Franca extends Territorio {
     }
 
     @Override
+    public Tag setTag() {
+        return Tag.FRANCA;
+    }
+    
+    @Override
     public String toString() {
         return "França";
     }

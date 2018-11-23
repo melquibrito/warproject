@@ -23,6 +23,11 @@ public final class Inglaterra extends Territorio {
     }
 
     @Override
+    public Tag setTag() {
+        return Tag.INGLATERRA;
+    }
+    
+    @Override
     public String toString() {
         return "Inglaterra";
     }

@@ -1,18 +1,19 @@
 package jogadores;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import territorios.Territorio;
 
 public final class Jogador {
     
-    public enum estado {
+    public enum Estados {
         AGUARDANDO_A_VEZ,
         NA_VEZ,
         DESCONECTADO;
         
     }
     
-    private Estado jogo;
+    private Estado estado;
     private String nome;
     private int exercitos;
     private int avioes;
@@ -22,13 +23,13 @@ public final class Jogador {
         Estado.desconectar(this);
     }
     
-    protected void mudarEstado(estado estado) {
+    protected void mudarEstado(Estados estado) {
         switch(estado){
             case NA_VEZ:
-                jogo = NaVez.getInstance();
+                this.estado = NaVez.getInstance();
                 break;
             case AGUARDANDO_A_VEZ:
-                jogo = AguardandoAVez.getInstance();
+                this.estado = AguardandoAVez.getInstance();
                 break;
             default:
         }
@@ -36,8 +37,11 @@ public final class Jogador {
     }
 
     public Estado getEstado() {
-        return jogo;
+        return estado;
     }
-    
+
+    public ArrayList<Territorio> getTerritoriosOcupados() {
+        return new ArrayList(Arrays.asList(territoriosOcupados));
+    }
     
 }

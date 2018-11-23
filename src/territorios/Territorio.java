@@ -1,25 +1,24 @@
 package territorios;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
 import jogadores.Jogador;
 
 //Todas as classes que herdam desta classe são Singletons
 public abstract class Territorio {
-    private static final HashSet<Territorio> territorios = new HashSet();
     
+    private Tag tag;
     private Jogador ocupante;
-    private int exercitos;
+    private int tropas;
 
     public Territorio() {
-        this.exercitos = 1;
-        add(this.getTerritorio());
+        this.tropas = 1;
+        this.setTag();
     }
     
     public abstract Territorio[] getVizinhos();
     public abstract Territorio getTerritorio();
+    public abstract Tag setTag();
+    @Override
+    public abstract String toString();
     
     public boolean territorioVizinho(Territorio territorio) {
         for(Territorio x : this.getVizinhos()) {
@@ -37,28 +36,31 @@ public abstract class Territorio {
     }
     
     public int getExercitos() {
-        return exercitos;
+        return tropas;
     }
 
-    public void setExercitos(int exercitos) {
-        this.exercitos = exercitos;
+    public void diminuirExercitos(Jogador jogador, int quantidade) {
+        int resultado = this.tropas - quantidade;
+        if(resultado > 0) {
+            this.tropas -= quantidade;
+        }else {
+            this.tropas = 0;
+        }
+        mudarOcupante(jogador);
     }
     
-    public static void add(Territorio territorio) {
-        if(!territorios.isEmpty()) {
-            if(territorios.stream().noneMatch((x) -> (x == territorio))) {
-                territorios.add(territorio);
-            }
-        }else{
-            territorios.add(territorio);
+    public void addExercitos(Jogador jogador, int quantidade) {
+        if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
+            this.tropas += quantidade;
         }
     }
-    
-    public static ArrayList<Territorio> getTerritorios() {
-        ArrayList<Territorio> lista;
-        lista = new ArrayList(Arrays.asList(territorios));
-        lista.sort(Comparator.comparing(Territorio::toString));
-        return lista;
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public Jogador getOcupante() {
+        return ocupante;
     }
     
 }

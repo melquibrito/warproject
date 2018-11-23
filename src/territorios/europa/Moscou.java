@@ -1,6 +1,6 @@
 package territorios.europa;
 
-import territorios.Territorio;
+import territorios.*;
 
 public final class Moscou extends Territorio {
     
@@ -20,9 +20,15 @@ public final class Moscou extends Territorio {
         return Moscou.getInstance();
     }
 
+    
     @Override
     public String toString() {
         return "Moscou";
+    }
+
+    @Override
+    public Tag setTag() {
+        return Tag.MOSCOU;
     }
     
 }

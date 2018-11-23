@@ -1,6 +1,6 @@
 package territorios.europa;
 
-import territorios.Territorio;
+import territorios.*;
 import territorios.africa.Egito;
 
 public final class Polonia extends Territorio {
@@ -19,6 +19,11 @@ public final class Polonia extends Territorio {
     @Override
     public Territorio getTerritorio() {
         return Polonia.getInstance();
+    }
+    
+    @Override
+    public Tag setTag() {
+        return Tag.POLONIA;
     }
 
     @Override

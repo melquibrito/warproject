@@ -1,5 +1,6 @@
 package territorios.africa;
 
+import territorios.Tag;
 import territorios.Territorio;
 
 public final class Egito extends Territorio {
@@ -25,6 +26,11 @@ public final class Egito extends Territorio {
     @Override
     public String toString() {
         return "Egito";
+    }
+
+    @Override
+    public Tag setTag() {
+        return Tag.EGITO;
     }
     
 }

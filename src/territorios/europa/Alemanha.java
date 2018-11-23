@@ -7,8 +7,8 @@ public final class Alemanha extends Territorio {
     
     private static final Alemanha instance = new Alemanha();
     
-    private Alemanha() {super();}
-
+    private Alemanha() {}
+    
     @Override
     public Territorio[] getVizinhos() {
         return new Territorio[]{Inglaterra.getInstance(), Franca.getInstance(), Polonia.getInstance()};
@@ -26,6 +26,11 @@ public final class Alemanha extends Territorio {
     @Override
     public String toString() {
         return "Alemanha";
+    }
+
+    @Override
+    public Tag setTag() {
+        return Tag.ALEMANHA;
     }
     
 }

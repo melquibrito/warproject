@@ -5,7 +5,7 @@ public abstract class Estado {
     
     public static void desconectar(Jogador jogador) {
         if(jogador.getEstado() instanceof Desconectado == false) {
-            jogador.mudarEstado(Jogador.estado.DESCONECTADO);
+            jogador.mudarEstado(Jogador.Estados.DESCONECTADO);
         }
     }
 }
