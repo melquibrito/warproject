@@ -3,7 +3,7 @@ package jogadores;
 public class NaVez extends Estado{
     
     private volatile static NaVez instance;
-    private Jogador jogador;
+    private static Jogador jogador;
     
     private NaVez(){}
     
@@ -40,8 +40,8 @@ public class NaVez extends Estado{
         
     }
     
-    private static Jogador mudarJogador(Jogador jogador) {
-        return jogador;
+    private static void mudarJogador(Jogador jogador) {
+        NaVez.jogador = jogador;
     }
     
     
