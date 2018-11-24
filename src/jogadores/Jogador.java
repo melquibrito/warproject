@@ -1,6 +1,7 @@
 package jogadores;
 
 import java.util.ArrayList;
+import partida.Estados;
 import territorios.Territorio;
 
 public final class Jogador {
