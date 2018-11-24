@@ -1,10 +1,13 @@
 package territorios.oceania;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public class Sumatra extends Territorio {
 
-    public final static Sumatra instance;
+    private final static Sumatra instance;
     
     static {
         instance = new Sumatra();
@@ -17,8 +20,9 @@ public class Sumatra extends Territorio {
     }
     
     @Override
-    public Territorio[] getVizinhos() {
-        return null;
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

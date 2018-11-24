@@ -1,11 +1,14 @@
 package territorios.america_do_sul;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.Territorio;
 import territorios.Territorios;
 
 public class Peru extends Territorio {
     
-    public final static Peru instance;
+    private final static Peru instance;
     
     static {
         instance = new Peru();
@@ -18,8 +21,13 @@ public class Peru extends Territorio {
     }
     
     @Override
-    public Territorio[] getVizinhos() {
-        return new Territorio[]{};
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

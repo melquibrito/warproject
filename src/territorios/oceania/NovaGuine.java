@@ -1,10 +1,13 @@
 package territorios.oceania;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public class NovaGuine extends Territorio {
 
-    public final static NovaGuine instance;
+    private final static NovaGuine instance;
     
     static {
         instance = new NovaGuine();
@@ -17,8 +20,11 @@ public class NovaGuine extends Territorio {
     }
     
     @Override
-    public Territorio[] getVizinhos() {
-        return null;
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        lista.add(Borneo.getInstance());
+        lista.add(Australia.getInstance());
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

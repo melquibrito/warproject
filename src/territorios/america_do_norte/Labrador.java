@@ -1,10 +1,13 @@
 package territorios.america_do_norte;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public final class Labrador extends Territorio {
 
-    public final static Labrador instance;
+    private final static Labrador instance;
 
     static {
         instance = new Labrador();
@@ -15,10 +18,15 @@ public final class Labrador extends Territorio {
     public static Labrador getInstance() {
         return instance;
     }
-
+    
     @Override
-    public Territorio[] getVizinhos() {
-        return null;
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package territorios;
 
+import java.util.List;
 import jogadores.Jogador;
 
 //Todas as classes que herdam desta classe são Singletons
@@ -14,7 +15,7 @@ public abstract class Territorio {
         this.setTag();
     }
     
-    public abstract Territorio[] getVizinhos();
+    public abstract List<Territorio> getVizinhos();
     public abstract Territorios setTag();
     
     @Override

@@ -1,10 +1,13 @@
 package territorios.asia;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public final class Vladvostok extends Territorio {
     
-    public final static Vladvostok instance;
+    private final static Vladvostok instance;
     
     static {
         instance = new Vladvostok();
@@ -15,10 +18,15 @@ public final class Vladvostok extends Territorio {
     public static Vladvostok getInstance() {
         return instance;
     }
-
+    
     @Override
-    public Territorio[] getVizinhos() {
-        return null;
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

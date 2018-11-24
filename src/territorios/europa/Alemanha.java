@@ -1,5 +1,8 @@
 package territorios.europa;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 
@@ -13,15 +16,19 @@ public final class Alemanha extends Territorio {
 
     private Alemanha() {}
     
-    @Override
-    public Territorio[] getVizinhos() {
-        return new Territorio[]{Inglaterra.getInstance(), Franca.getInstance(), Polonia.getInstance()};
-    }
-    
     public static Territorio getInstance() {
         return Alemanha.instance;
     }
 
+    @Override
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        lista.add(Inglaterra.getInstance());
+        lista.add(Franca.getInstance());
+        lista.add(Polonia.getInstance());
+        return Collections.unmodifiableList(lista);
+    }
+    
     @Override
     public Territorios setTag() {
         return Territorios.ALEMANHA;

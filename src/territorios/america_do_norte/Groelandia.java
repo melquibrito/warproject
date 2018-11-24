@@ -1,10 +1,13 @@
 package territorios.america_do_norte;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public final class Groelandia extends Territorio {
 
-    public final static Groelandia instance;
+    private final static Groelandia instance;
     
     static {
         instance = new Groelandia();
@@ -17,8 +20,13 @@ public final class Groelandia extends Territorio {
     }
     
     @Override
-    public Territorio[] getVizinhos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override

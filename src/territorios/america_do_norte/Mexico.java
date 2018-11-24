@@ -1,10 +1,13 @@
 package territorios.america_do_norte;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import territorios.*;
 
 public final class Mexico extends Territorio {
 
-    public final static Mexico instance;
+    private final static Mexico instance;
 
     static {
         instance = new Mexico();
@@ -16,10 +19,15 @@ public final class Mexico extends Territorio {
     public static Mexico getInstance() {
         return instance;
     }
-
+    
     @Override
-    public Territorio[] getVizinhos() {
-        return null;
+    public List<Territorio> getVizinhos() {
+        List<Territorio> lista = new ArrayList();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        //lista.add();
+        return Collections.unmodifiableList(lista);
     }
 
     @Override
