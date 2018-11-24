@@ -36,7 +36,7 @@ public abstract class ListaTerritorios {
     }
     
     public static List<Territorio> getLista() {
-        ArrayList<Territorio> lista = new ArrayList(Arrays.asList(territorios));
+        List<Territorio> lista = new ArrayList(Arrays.asList(territorios));
         lista.sort(Comparator.comparing(Territorio::toString));
         return Collections.unmodifiableList(lista);
     }
