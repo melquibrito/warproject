@@ -7,7 +7,6 @@ import territorios.Territorios;
 
 public abstract class Jogador {
     
-    private Cor cor;
     private Estado estado;
     private String nick;
     private int tropas;
@@ -49,9 +48,9 @@ public abstract class Jogador {
 
     public void alternarAtaque() {
         if(this.ataque instanceof AtaqueTerrestre && getAvioes() > 0) {
-            this.ataque = AtaqueAereo.getInstance();
+            this.ataque = new AtaqueAereo();
         }else if(getTropas() > 0){
-            this.ataque = AtaqueTerrestre.getInstance();
+            this.ataque = new AtaqueTerrestre();
         }
     }
     
