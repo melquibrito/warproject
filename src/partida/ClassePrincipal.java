@@ -11,6 +11,7 @@ public final class ClassePrincipal {
         lista = ListaTerritorios.getLista();
         
         System.out.println(lista);
+        
     }
     
 }

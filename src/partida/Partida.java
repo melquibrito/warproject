@@ -7,13 +7,17 @@ import territorios.ListaTerritorios;
 import territorios.Territorio;
 
 public final class Partida {
-    List<Territorio> territorios;
-    List<Jogador> jogadores;
+    private final List<Territorio> territorios;
+    private final List<Jogador> jogadores;
 
-    public Partida() {
+    public Partida(Jogador[] listaDeJogadores) {
         territorios = ListaTerritorios.getLista();
-        
         jogadores = new ArrayList();
+        if(listaDeJogadores != null) {
+            for(Jogador x : listaDeJogadores) {
+                jogadores.add(x);
+            }
+        }
     }
     
     
