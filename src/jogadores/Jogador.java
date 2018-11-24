@@ -1,18 +1,20 @@
 package jogadores;
 
 import batalha.*;
-import jogadores.estado.Estados;
+import jogadores.estado.Estado;
+import partida.Partida;
 import territorios.Territorios;
 
 public abstract class Jogador {
     
     private Cor cor;
-    private Estados estado;
+    private Estado estado;
     private String nick;
     private int tropas;
     private int avioes;
     private Ataque ataque;
     private int tropasADistribuir;
+    private Partida partida;
 
     public Jogador() {
         setNickToDefault();
@@ -27,7 +29,7 @@ public abstract class Jogador {
     
     public void atacar(Territorios inimigo) {
         if(getAvioes() > 0) {
-            //delegar metodo para Estado
+            
         }
     }
     
@@ -53,7 +55,7 @@ public abstract class Jogador {
         }
     }
     
-    public Estados getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
@@ -92,5 +94,18 @@ public abstract class Jogador {
     public void setTropasADistribuir(int tropasADistribuir) {
         this.tropasADistribuir = tropasADistribuir;
     }
+
+    public Ataque getAtaque() {
+        return ataque;
+    }
+    
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
     
 }
