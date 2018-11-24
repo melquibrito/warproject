@@ -11,9 +11,10 @@ import territorios.europa.*;
 import territorios.oceania.*;
 
 public abstract class ListaTerritorios {
-    private static final HashSet<Territorio> territorios = new HashSet();
+    private static final HashSet<Territorio> territorios;
     
     static {
+        territorios = new HashSet();
         build();
     }
     
