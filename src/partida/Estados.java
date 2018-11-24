@@ -3,7 +3,6 @@ package partida;
 public enum Estados {
     AGUARDANDO_A_VEZ(Jogando.FALSO),
     NA_VEZ(Jogando.DISTRIBUINDO_TROPAS),
-    DEFENDENDO(Jogando.FALSO),
     DESCONECTADO(Jogando.FALSO);
     
     public enum Jogando {
@@ -21,20 +20,23 @@ public enum Estados {
         
     }
     
-    public void mudarFase(Jogando fase) {
+    public void proximaFase(Estados estado) {
         if(this == Estados.NA_VEZ) {
-            switch(fase){
-                case ATACANDO:
-                    if(this.fase == Jogando.DISTRIBUINDO_TROPAS) {
-                        this.fase = Jogando.ATACANDO;
-                    }
+            switch(estado.getFase()){
+                case DISTRIBUINDO_TROPAS:
+                    estado.fase = Jogando.ATACANDO;
                     break;
-                case MOVENDO_TROPAS:
-                    if(this.fase == Jogando.ATACANDO) {
-                        this.fase = Jogando.MOVENDO_TROPAS;
-                    }
+                case ATACANDO:
+                    estado.fase = Jogando.MOVENDO_TROPAS;
+                    break;
+                default:
+                     estado.fase = Jogando.FALSO;
             }
         }
+    }
+    
+    public Jogando getFase() {
+        return fase;
     }
     
     

@@ -51,9 +51,9 @@ public abstract class Territorio {
     }
     
     public void addTropas(Jogador jogador, int quantidade) {
-        if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
+        /*if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
             this.tropas += quantidade;
-        }
+        }*/
     }
 
     public Territorios getTag() {
