@@ -20,12 +20,6 @@ public final class Suecia extends Territorio {
     public static Territorio getInstance() {
         return instance;
     }
-
-    @Override
-    public Territorio getTerritorio() {
-        return Suecia.getInstance();
-    }
-
     
     @Override
     public Tag setTag() {

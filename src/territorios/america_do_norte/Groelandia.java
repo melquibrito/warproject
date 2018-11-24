@@ -22,11 +22,6 @@ public final class Groelandia extends Territorio {
     }
 
     @Override
-    public Territorio getTerritorio() {
-        return Groelandia.getInstance();
-    }
-
-    @Override
     public Tag setTag() {
         return Tag.GROELANDIA;
     }

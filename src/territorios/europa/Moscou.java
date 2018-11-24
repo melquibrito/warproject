@@ -20,11 +20,6 @@ public final class Moscou extends Territorio {
     public static Territorio getInstance() {
         return instance;
     }
-
-    @Override
-    public Territorio getTerritorio() {
-        return Moscou.getInstance();
-    }
     
     @Override
     public Tag setTag() {

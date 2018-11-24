@@ -22,11 +22,6 @@ public final class Egito extends Territorio {
     }
 
     @Override
-    public Territorio getTerritorio() {
-        return Egito.getInstance();
-    }
-
-    @Override
     public String toString() {
         return "Egito";
     }

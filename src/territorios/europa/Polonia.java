@@ -21,11 +21,6 @@ public final class Polonia extends Territorio {
     public static Territorio getInstance() {
         return instance;
     }
-
-    @Override
-    public Territorio getTerritorio() {
-        return Polonia.getInstance();
-    }
     
     @Override
     public Tag setTag() {

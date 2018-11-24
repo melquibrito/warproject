@@ -21,11 +21,6 @@ public final class Franca extends Territorio {
     public static Territorio getInstance() {
         return Franca.instance;
     }
-    
-    @Override
-    public Territorio getTerritorio() {
-        return getInstance();
-    }
 
     @Override
     public Tag setTag() {

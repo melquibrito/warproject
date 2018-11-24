@@ -23,11 +23,6 @@ public final class Alemanha extends Territorio {
     }
 
     @Override
-    public Territorio getTerritorio() {
-        return getInstance();
-    }
-
-    @Override
     public Tag setTag() {
         return Tag.ALEMANHA;
     }

@@ -22,11 +22,6 @@ public final class Argelia extends Territorio {
     }
 
     @Override
-    public Territorio getTerritorio() {
-        return Argelia.getInstance();
-    }
-
-    @Override
     public Tag setTag() {
         return Tag.ARGELIA;
     }

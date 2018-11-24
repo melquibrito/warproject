@@ -20,11 +20,6 @@ public final class Inglaterra extends Territorio {
     public static Territorio getInstance() {
         return instance;
     }
-    
-    @Override
-    public Territorio getTerritorio() {
-        return Inglaterra.getInstance();
-    }
 
     @Override
     public Tag setTag() {

@@ -23,11 +23,6 @@ public final class Islandia extends Territorio {
     }
     
     @Override
-    public Territorio getTerritorio() {
-        return Islandia.getInstance();
-    }
-    
-    @Override
     public Tag setTag() {
         return Tag.ISLANDIA;
     }
