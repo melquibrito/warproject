@@ -6,6 +6,7 @@ import territorios.Territorios;
 
 public abstract class Jogador {
     
+    private Cor cor;
     private Estados estado;
     private String nick;
     private int tropas;
@@ -19,9 +20,12 @@ public abstract class Jogador {
     
     @Override
     public abstract String toString();
+    public abstract Cor getCor();
     
     public void atacar(Territorios inimigo) {
-        //delegar metodo para Estado
+        if(getAvioes() > 0) {
+            //delegar metodo para Estado
+        }
     }
     
     public void atacar(Territorios de, Territorios para) {
