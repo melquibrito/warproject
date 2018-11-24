@@ -9,7 +9,7 @@ public enum Estados {
         FALSO,
         DISTRIBUINDO_TROPAS,
         ATACANDO,
-        MOVENDO_TROPAS;
+        DESLOCANDO_TROPAS;
         
     }
     
@@ -27,7 +27,7 @@ public enum Estados {
                     estado.etapa = Jogando.ATACANDO;
                     break;
                 case ATACANDO:
-                    estado.etapa = Jogando.MOVENDO_TROPAS;
+                    estado.etapa = Jogando.DESLOCANDO_TROPAS;
                     break;
                 default:
                      estado.etapa = Jogando.FALSO;
