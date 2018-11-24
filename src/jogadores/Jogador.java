@@ -12,10 +12,13 @@ public abstract class Jogador {
     private int tropas;
     private int avioes;
     private Ataque ataque;
+    private int tropasADistribuir;
 
     public Jogador() {
         setNickToDefault();
         this.avioes = 5;
+        this.tropasADistribuir = 0;
+        
     }
     
     @Override
@@ -29,7 +32,9 @@ public abstract class Jogador {
     }
     
     public void atacar(Territorios de, Territorios para) {
-        //delegar metodo para Estado
+        if(getTropasADistribuir() == 0) {
+            //delegar metodo para Estado
+        }
     }
     
     public void desconnectar() {
@@ -52,6 +57,9 @@ public abstract class Jogador {
         return estado;
     }
 
+    public void setNickToDefault() {
+        this.nick = this.toString();
+    }
     
     public String getNick() {
         return nick;
@@ -59,10 +67,6 @@ public abstract class Jogador {
 
     public void setNick(String nome) {
         this.nick = nome;
-    }
-    
-    public void setNickToDefault() {
-        this.nick = this.toString();
     }
 
     public int getTropas() {
@@ -79,6 +83,14 @@ public abstract class Jogador {
 
     public void setAvioes(int avioes) {
         this.avioes = avioes;
+    }
+
+    public int getTropasADistribuir() {
+        return tropasADistribuir;
+    }
+
+    public void setTropasADistribuir(int tropasADistribuir) {
+        this.tropasADistribuir = tropasADistribuir;
     }
     
 }
