@@ -16,7 +16,7 @@ public class AtaqueAereo implements Ataque {
         return instance;
     }
     
-    //Retornar duas listas aqui, uma com os dados do atacando e a outra com os do defensor
+    //Retornar duas listas aqui, uma com os dados ofensivos e a outra com os defensivos
     @Override
     public ArrayList<Integer>[] getDados(int dadosOfensivos, int dadosDefensivos) {
         return null;
