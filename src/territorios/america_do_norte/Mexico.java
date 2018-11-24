@@ -3,7 +3,7 @@ package territorios.america_do_norte;
 
 import territorios.*;
 
-public final class Mexico extends territorios {
+public final class Mexico extends Territorio {
 	
 	public final static Mexico instance;
 	    
@@ -19,7 +19,7 @@ public final class Mexico extends territorios {
 	    
 	@Override
 	public Territorio[] getVizinhos() {
-	    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	    return null;
 	}
 
 	@Override
