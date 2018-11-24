@@ -1,22 +1,22 @@
-package territorios.asia;
+package territorios.oceania;
 
 import territorios.Tag;
 import territorios.Territorio;
 
-public class Vladvostok extends Territorio {
-    
-    public final static Vladvostok instance;
+public class Australia extends Territorio {
+
+    public final static Australia instance;
     
     static {
-        instance = new Vladvostok();
+        instance = new Australia();
     }
-
-    private Vladvostok() {}
     
-    public static Vladvostok getInstance() {
+    private Australia() {}
+    
+    public static Australia getInstance() {
         return instance;
     }
-
+    
     @Override
     public Territorio[] getVizinhos() {
         return null;
@@ -24,11 +24,12 @@ public class Vladvostok extends Territorio {
 
     @Override
     public Tag setTag() {
-        return Tag.VLADVOSTOK;
+        return Tag.AUSTRALIA;
     }
 
     @Override
     public String toString() {
-        return "Vladvostok";
+        return "Australia";
     }
+    
 }

@@ -13,13 +13,13 @@ public final class Alaska extends Territorio {
 
     private Alaska() {}
     
+    public static Alaska getInstance() {
+        return instance;
+    }
+    
     @Override
     public Territorio[] getVizinhos() {
         return null;
-    }
-    
-    public static Alaska getInstance() {
-        return instance;
     }
 
     @Override
