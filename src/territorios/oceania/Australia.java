@@ -2,7 +2,7 @@ package territorios.oceania;
 
 import territorios.*;
 
-public class Australia extends Territorio {
+public final class Australia extends Territorio {
 
     public final static Australia instance;
     

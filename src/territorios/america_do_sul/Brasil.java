@@ -2,7 +2,7 @@ package territorios.america_do_sul;
 
 import territorios.*;
 
-public class Brasil extends Territorio {
+public final class Brasil extends Territorio {
     
     public final static Brasil instance;
     

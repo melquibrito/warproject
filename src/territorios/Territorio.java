@@ -30,16 +30,16 @@ public abstract class Territorio {
     }
     
     public void mudarOcupante(Jogador jogador) {
-        if(getExercitos() == 0 && ocupante != jogador) {
+        if(getTropas() == 0 && ocupante != jogador) {
             ocupante = jogador;
         }
     }
     
-    public int getExercitos() {
+    public int getTropas() {
         return tropas;
     }
 
-    public void diminuirExercitos(Jogador jogador, int quantidade) {
+    public void diminuirTropas(Jogador jogador, int quantidade) {
         int resultado = this.tropas - quantidade;
         if(resultado > 0) {
             this.tropas -= quantidade;
@@ -49,7 +49,7 @@ public abstract class Territorio {
         mudarOcupante(jogador);
     }
     
-    public void addExercitos(Jogador jogador, int quantidade) {
+    public void addTropas(Jogador jogador, int quantidade) {
         if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
             this.tropas += quantidade;
         }

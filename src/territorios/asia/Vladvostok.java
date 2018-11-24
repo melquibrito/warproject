@@ -2,7 +2,7 @@ package territorios.asia;
 
 import territorios.*;
 
-public class Vladvostok extends Territorio {
+public final class Vladvostok extends Territorio {
     
     public final static Vladvostok instance;
     
