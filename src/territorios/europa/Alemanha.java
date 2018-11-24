@@ -23,8 +23,8 @@ public final class Alemanha extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.ALEMANHA;
+    public Territorios setTag() {
+        return Territorios.ALEMANHA;
     }
     
     @Override

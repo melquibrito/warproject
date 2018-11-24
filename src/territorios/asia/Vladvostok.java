@@ -1,7 +1,6 @@
 package territorios.asia;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public class Vladvostok extends Territorio {
     
@@ -23,8 +22,8 @@ public class Vladvostok extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.VLADVOSTOK;
+    public Territorios setTag() {
+        return Territorios.VLADVOSTOK;
     }
 
     @Override

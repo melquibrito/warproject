@@ -27,8 +27,8 @@ public final class Egito extends Territorio {
     }
     
     @Override
-    public Tag setTag() {
-        return Tag.EGITO;
+    public Territorios setTag() {
+        return Territorios.EGITO;
     }
     
 }

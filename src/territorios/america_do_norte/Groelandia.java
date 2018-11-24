@@ -22,8 +22,8 @@ public final class Groelandia extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.GROELANDIA;
+    public Territorios setTag() {
+        return Territorios.GROELANDIA;
     }
     
     @Override

@@ -1,7 +1,6 @@
 package territorios.america_do_norte;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public final class Alaska extends Territorio {
     
@@ -23,8 +22,8 @@ public final class Alaska extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.ALASKA;
+    public Territorios setTag() {
+        return Territorios.ALASKA;
     }
 
     @Override

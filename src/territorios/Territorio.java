@@ -5,7 +5,7 @@ import jogadores.Jogador;
 //Todas as classes que herdam desta classe são Singletons
 public abstract class Territorio {
     
-    private Tag tag;
+    private Territorios tag;
     private Jogador ocupante;
     private int tropas;
 
@@ -15,7 +15,7 @@ public abstract class Territorio {
     }
     
     public abstract Territorio[] getVizinhos();
-    public abstract Tag setTag();
+    public abstract Territorios setTag();
     
     @Override
     public abstract String toString();
@@ -55,7 +55,7 @@ public abstract class Territorio {
         }
     }
 
-    public Tag getTag() {
+    public Territorios getTag() {
         return tag;
     }
 

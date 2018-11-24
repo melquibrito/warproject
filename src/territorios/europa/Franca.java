@@ -23,8 +23,8 @@ public final class Franca extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.FRANCA;
+    public Territorios setTag() {
+        return Territorios.FRANCA;
     }
     
     @Override

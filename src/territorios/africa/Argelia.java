@@ -22,8 +22,8 @@ public final class Argelia extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.ARGELIA;
+    public Territorios setTag() {
+        return Territorios.ARGELIA;
     }
     
     @Override

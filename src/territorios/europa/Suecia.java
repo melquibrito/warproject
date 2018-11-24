@@ -22,8 +22,8 @@ public final class Suecia extends Territorio {
     }
     
     @Override
-    public Tag setTag() {
-        return Tag.SUECIA;
+    public Territorios setTag() {
+        return Territorios.SUECIA;
     }
   
     @Override

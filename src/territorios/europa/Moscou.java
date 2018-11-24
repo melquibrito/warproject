@@ -22,8 +22,8 @@ public final class Moscou extends Territorio {
     }
     
     @Override
-    public Tag setTag() {
-        return Tag.MOSCOU;
+    public Territorios setTag() {
+        return Territorios.MOSCOU;
     }
     
     @Override

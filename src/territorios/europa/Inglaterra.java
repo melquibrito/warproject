@@ -22,8 +22,8 @@ public final class Inglaterra extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.INGLATERRA;
+    public Territorios setTag() {
+        return Territorios.INGLATERRA;
     }
 
     @Override

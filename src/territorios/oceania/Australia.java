@@ -1,7 +1,6 @@
 package territorios.oceania;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public class Australia extends Territorio {
 
@@ -23,8 +22,8 @@ public class Australia extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.AUSTRALIA;
+    public Territorios setTag() {
+        return Territorios.AUSTRALIA;
     }
 
     @Override

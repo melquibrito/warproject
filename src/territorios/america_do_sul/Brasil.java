@@ -1,7 +1,6 @@
 package territorios.america_do_sul;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public class Brasil extends Territorio {
     
@@ -23,8 +22,8 @@ public class Brasil extends Territorio {
     }
 
     @Override
-    public Tag setTag() {
-        return Tag.BRASIL;
+    public Territorios setTag() {
+        return Territorios.BRASIL;
     }
 
     @Override

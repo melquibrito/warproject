@@ -23,8 +23,8 @@ public final class Polonia extends Territorio {
     }
     
     @Override
-    public Tag setTag() {
-        return Tag.POLONIA;
+    public Territorios setTag() {
+        return Territorios.POLONIA;
     }
 
     @Override
