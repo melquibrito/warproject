@@ -6,37 +6,21 @@ import territorios.Territorio;
 
 public final class Jogador {
     
-    public enum Estados {
-        AGUARDANDO_A_VEZ,
-        NA_VEZ,
-        DESCONECTADO;
-        
-    }
-    
-    private Estado estado;
+    private Estados estado;
     private String nome;
-    private int exercitos;
+    private int tropas;
     private int avioes;
-    private final ArrayList<Territorio> territoriosOcupados = new ArrayList();
+    private final ArrayList<Territorio> territoriosOcupados = null;
     
-    public void sairDaPartida() {
-        Estado.desconectar(this);
+    public void desconnectar() {
+        estado = Estados.DESCONECTADO;
     }
     
-    protected void mudarEstado(Estados estado) {
-        switch(estado){
-            case NA_VEZ:
-                this.estado = NaVez.getInstance();
-                break;
-            case AGUARDANDO_A_VEZ:
-                this.estado = AguardandoAVez.getInstance();
-                break;
-            default:
-        }
-        
+    public void mudarEstado(Estados estado) {
+        this.estado = estado;
     }
 
-    public Estado getEstado() {
+    public Estados getEstado() {
         return estado;
     }
 

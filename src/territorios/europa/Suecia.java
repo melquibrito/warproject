@@ -1,12 +1,17 @@
 package territorios.europa;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public final class Suecia extends Territorio {
 
-    private final static Suecia instance = new Suecia();
+    private final static Suecia instance;
 
+    static {
+        instance = new Suecia();
+    }
+
+    private Suecia() {}
+    
     @Override
     public Territorio[] getVizinhos() {
         return new Territorio[]{Inglaterra.getInstance(), Moscou.getInstance()};
@@ -26,7 +31,7 @@ public final class Suecia extends Territorio {
     public Tag setTag() {
         return Tag.SUECIA;
     }
-    
+  
     @Override
     public String toString() {
         return "Suécia";

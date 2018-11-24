@@ -1,12 +1,15 @@
 package territorios.africa;
 
-import territorios.Tag;
-import territorios.Territorio;
+import territorios.*;
 
 public final class Egito extends Territorio {
     
-    private final static Egito instance = new Egito();
+    private final static Egito instance;
     
+    static {
+        instance = new Egito();
+    }
+
     private Egito() {}
 
     @Override
@@ -27,7 +30,7 @@ public final class Egito extends Territorio {
     public String toString() {
         return "Egito";
     }
-
+    
     @Override
     public Tag setTag() {
         return Tag.EGITO;

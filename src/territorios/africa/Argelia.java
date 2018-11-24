@@ -4,8 +4,12 @@ import territorios.*;
 
 public final class Argelia extends Territorio {
     
-    private final static Argelia instance = new Argelia();
+    private final static Argelia instance;
     
+    static {
+        instance = new Argelia();
+    }
+
     private Argelia() {}
 
     @Override

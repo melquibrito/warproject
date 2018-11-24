@@ -5,8 +5,12 @@ import territorios.africa.*;
 
 public final class Franca extends Territorio {
     
-    private final static Franca instance = new Franca();
+    private final static Franca instance;
     
+    static {
+        instance = new Franca();
+    }
+
     private Franca() {}
 
     @Override

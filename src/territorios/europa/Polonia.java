@@ -5,7 +5,13 @@ import territorios.africa.Egito;
 
 public final class Polonia extends Territorio {
 
-    private final static Polonia instance = new Polonia();
+    private final static Polonia instance;
+    
+    static {
+        instance = new Polonia();
+    }
+
+    private Polonia() {}
     
     @Override
     public Territorio[] getVizinhos() {

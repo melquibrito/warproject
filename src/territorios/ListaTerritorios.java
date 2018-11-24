@@ -2,26 +2,32 @@ package territorios;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
+import territorios.europa.*;
 
-public class ListaTerritorios {
+public abstract class ListaTerritorios {
     private static final HashSet<Territorio> territorios = new HashSet();
     
-    public static void add(Territorio territorio) {
-        if(!territorios.isEmpty()) {
-            if(territorios.stream().noneMatch((x) -> (x == territorio))) {
-                territorios.add(territorio);
-            }
-        }else{
-            territorios.add(territorio);
-        }
+    static {
+        build();
     }
     
-    public static ArrayList<Territorio> getTerritoriosAsArrayList() {
-        ArrayList<Territorio> lista;
-        lista = new ArrayList(Arrays.asList(territorios));
+    private static void build() {
+        territorios.add(Alemanha.getInstance());
+        territorios.add(Franca.getInstance());
+        territorios.add(Inglaterra.getInstance());
+        territorios.add(Islandia.getInstance());
+        territorios.add(Moscou.getInstance());
+        territorios.add(Polonia.getInstance());
+        territorios.add(Suecia.getInstance());
+    }
+    
+    public static List<Territorio> getLista() {
+        ArrayList<Territorio> lista = new ArrayList(Arrays.asList(territorios));
         lista.sort(Comparator.comparing(Territorio::toString));
-        return lista;
+        return Collections.unmodifiableList(lista);
     }
 }

@@ -4,7 +4,13 @@ import territorios.*;
 
 public final class Moscou extends Territorio {
     
-    private final static Moscou instance = new Moscou();
+    private final static Moscou instance;
+    
+    static {
+        instance = new Moscou();
+    }
+
+    private Moscou() {}
     
     @Override
     public Territorio[] getVizinhos() {
@@ -19,16 +25,15 @@ public final class Moscou extends Territorio {
     public Territorio getTerritorio() {
         return Moscou.getInstance();
     }
-
+    
+    @Override
+    public Tag setTag() {
+        return Tag.MOSCOU;
+    }
     
     @Override
     public String toString() {
         return "Moscou";
-    }
-
-    @Override
-    public Tag setTag() {
-        return Tag.MOSCOU;
     }
     
 }

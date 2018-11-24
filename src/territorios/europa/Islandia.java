@@ -5,7 +5,13 @@ import territorios.america_do_norte.Groelandia;
 
 public final class Islandia extends Territorio {
     
-    private final static Islandia instance = new Islandia();
+    private final static Islandia instance;
+    
+    static {
+        instance = new Islandia();
+    }
+
+    private Islandia() {}
 
     @Override
     public Territorio[] getVizinhos() {
@@ -25,7 +31,7 @@ public final class Islandia extends Territorio {
     public Tag setTag() {
         return Tag.ISLANDIA;
     }
-
+    
     @Override
     public String toString() {
         return "Islândia";

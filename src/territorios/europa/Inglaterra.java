@@ -4,8 +4,12 @@ import territorios.*;
 
 public final class Inglaterra extends Territorio {
 
-    private final static Inglaterra instance = new Inglaterra();
+    private final static Inglaterra instance;
     
+    static {
+        instance = new Inglaterra();
+    }
+
     private Inglaterra() {}
     
     @Override
@@ -26,7 +30,7 @@ public final class Inglaterra extends Territorio {
     public Tag setTag() {
         return Tag.INGLATERRA;
     }
-    
+
     @Override
     public String toString() {
         return "Inglaterra";
