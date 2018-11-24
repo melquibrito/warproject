@@ -1,7 +1,6 @@
 package jogadores;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import territorios.Territorio;
 
 public final class Jogador {
@@ -25,7 +24,7 @@ public final class Jogador {
     }
 
     public ArrayList<Territorio> getTerritoriosOcupados() {
-        return new ArrayList(Arrays.asList(territoriosOcupados));
+        return territoriosOcupados;
     }
     
 }
