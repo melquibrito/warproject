@@ -16,7 +16,9 @@ public final class Jogador {
     }
     
     public void mudarEstado(Estados estado) {
-        this.estado = estado;
+        if(estado != Estados.DESCONECTADO) {
+            this.estado = estado;
+        }
     }
 
     public Estados getEstado() {
