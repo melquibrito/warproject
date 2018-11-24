@@ -1,4 +1,4 @@
-package partida;
+package jogadores.estado;
 
 public enum Estados {
     AGUARDANDO_A_VEZ(Jogando.FALSO),
@@ -13,30 +13,30 @@ public enum Estados {
         
     }
     
-    private Jogando fase;
+    private Jogando etapa;
     
-    private Estados(Jogando fase) {
-        this.fase = fase;
+    private Estados(Jogando etapa) {
+        this.etapa = etapa;
         
     }
     
     public void proximaFase(Estados estado) {
         if(this == Estados.NA_VEZ) {
-            switch(estado.getFase()){
+            switch(estado.getEtapa()){
                 case DISTRIBUINDO_TROPAS:
-                    estado.fase = Jogando.ATACANDO;
+                    estado.etapa = Jogando.ATACANDO;
                     break;
                 case ATACANDO:
-                    estado.fase = Jogando.MOVENDO_TROPAS;
+                    estado.etapa = Jogando.MOVENDO_TROPAS;
                     break;
                 default:
-                     estado.fase = Jogando.FALSO;
+                     estado.etapa = Jogando.FALSO;
             }
         }
     }
     
-    public Jogando getFase() {
-        return fase;
+    public Jogando getEtapa() {
+        return etapa;
     }
     
     

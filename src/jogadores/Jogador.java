@@ -1,7 +1,7 @@
 package jogadores;
 
 import batalha.*;
-import partida.Estados;
+import jogadores.estado.Estados;
 import territorios.Territorios;
 
 public abstract class Jogador {
