@@ -16,9 +16,9 @@ public final class Jogador {
         estado = Estados.DESCONECTADO;
     }
     
-    public void mudarEstado(Estados estado) {
+    public void finalizarJogada() {
         if(estado != Estados.DESCONECTADO) {
-            this.estado = estado;
+            this.estado = Estados.AGUARDANDO_A_VEZ;
         }
     }
 
