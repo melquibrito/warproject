@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import jogadores.Jogador;
 import jogadores.Jogadores;
+import jogadores.estado.Estados;
+import jogadores.estado.Estados.Jogando;
 
-public final class Partida {
+public final class Partida implements Observador {
     private static Partida partida;
     public List<Jogadores> jogadores;
     private Jogador jogador;
@@ -48,7 +50,7 @@ public final class Partida {
         
     }
     
-    public void proximo() {
+    private void proximo() {
         
     }
 
@@ -57,6 +59,14 @@ public final class Partida {
             return partida;
         }else {
             return new Partida();
+        }
+    }
+
+    @Override
+    public void atualizar(Sujeito sujeito) {
+        Jogador j = (Jogador) sujeito;
+        if(j.getEstado().getEtapa() == Jogando.FALSO) {
+            proximo();
         }
     }
     

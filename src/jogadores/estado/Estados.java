@@ -45,6 +45,7 @@ public enum Estados {
                     break;
                 default:
                     jogador.getEstado().getEstado().etapa = Jogando.FALSO;
+                    jogador.notificarObservador();
             }
         }
     }

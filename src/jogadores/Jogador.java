@@ -6,10 +6,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import jogadores.estado.Estado;
+import partida.Observador;
 import partida.Partida;
+import partida.Sujeito;
 import territorios.Territorios;
 
-public abstract class Jogador {
+public abstract class Jogador implements Sujeito {
     
     public final static List<Jogador> jogadores;
     
@@ -33,6 +35,8 @@ public abstract class Jogador {
     private Dado dado;
     private int tropasADistribuir;
     private Partida partida;
+    
+    private Observador observador;
 
     public Jogador() {
         setNickToDefault();
@@ -125,5 +129,22 @@ public abstract class Jogador {
         this.partida = partida;
     }
     
+    
+    @Override
+    public void regitrarObservador(Observador observador) {
+        this.observador = observador;
+    }
+
+    @Override
+    public void removerObservador(Observador observer) {
+        this.observador = null;
+    }
+
+    @Override
+    public void notificarObservador() {
+        if(observador != null) {
+            observador.atualizar(this);
+        }
+    }
     
 }

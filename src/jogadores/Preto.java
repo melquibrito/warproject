@@ -1,5 +1,7 @@
 package jogadores;
 
+import partida.Observador;
+
 public class Preto extends Jogador {
 
     private static Preto instance;
