@@ -1,6 +1,7 @@
 package jogadores.estado;
 
 public enum Estados {
+    MORTO(Jogando.FALSO, "Fora da partida"),
     AGUARDANDO_A_VEZ(Jogando.FALSO, "Aguardando a vez"),
     NA_VEZ(Jogando.DISTRIBUINDO_TROPAS, "Jogando"),
     DESCONECTADO(Jogando.FALSO, "Desconectado");
