@@ -18,4 +18,9 @@ public enum Jogadores {
         return jogador;
     }
     
+    @Override
+    public String toString() {
+        return this.getJogador().getNick();
+    }
+    
 }
