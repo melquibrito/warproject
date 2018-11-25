@@ -18,8 +18,8 @@ public abstract class Estado {
     }
     
     public void finalizarEtapa(Jogador jogador) {
-        if(jogador.getEstado().getEstado() == Estados.NA_VEZ) {
-            switch(jogador.getEstado().getEstado().getEtapa()){
+        if(jogador.getEstado() instanceof Jogando) {
+            /*switch(jogador.getEstado().getEtapa()){
                 case DISTRIBUINDO_TROPAS:
                     Estados.proximaFase(jogador.getEstado().getEstado());
                     break;
@@ -27,11 +27,15 @@ public abstract class Estado {
                     break;
                 case DESLOCANDO_TROPAS:
                     
-            }
+            }*/
         }
     }
     
     public abstract Estados getEstado();
+    
+    public Estados.Jogando getEtapa() {
+        return getEstado().getEtapa();
+    }
 
     public void setEstado(Estados estado) {
         
