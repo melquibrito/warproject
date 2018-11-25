@@ -121,7 +121,8 @@ public enum Territorios {
         mudarOcupante(jogador);
     }
     
-    public void addTropas(Jogador jogador, int quantidade) {
+    public void addTropas(int quantidade) {
+        tropas += quantidade;
         /*if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
             this.tropas += quantidade;
         }*/
@@ -132,7 +133,7 @@ public enum Territorios {
     }
     
     public List<Territorios> getVizinhos() {
-        List<Territorios> vizinhos = null;
+        List<Territorios> vizinhos = new ArrayList();
         switch(this){
             case ALASKA:
                 break;
@@ -224,6 +225,7 @@ public enum Territorios {
                 break;
             case AUSTRALIA:
                 break;
+                
         }
         
         return Collections.unmodifiableList(vizinhos);
