@@ -3,8 +3,14 @@ package batalha;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import territorios.Territorios;
 
 public final class AtaqueTerrestre implements Dado {
+    
+    @Override
+    public void jogar(Territorios de, Territorios para) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @Override
     public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos) {

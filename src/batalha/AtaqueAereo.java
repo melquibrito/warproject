@@ -1,9 +1,15 @@
 package batalha;
 
 import java.util.Random;
+import territorios.Territorios;
 
 public class AtaqueAereo implements Dado {
 
+    @Override
+    public void jogar(Territorios de, Territorios para) {
+        
+    }
+    
     @Override
     public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos) {
         Random rand = new Random();
