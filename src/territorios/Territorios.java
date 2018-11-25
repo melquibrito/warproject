@@ -1,6 +1,9 @@
 package territorios;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import jogadores.Jogador;
 
 public enum Territorios {
     
@@ -65,26 +68,165 @@ public enum Territorios {
         EUROPA, 
         OCEANIA;
         
+        public List<Territorios> getTerritorios() {
+            ArrayList<Territorios> totalidade = new ArrayList();
+            for(Territorios x : Territorios.values()) {
+                if(x.getContinente() == this) {
+                    totalidade.add(x);
+                }
+            }
+            return Collections.unmodifiableList(totalidade);
+        }
+        
     }
     
+    private Jogador ocupante;
+    private int tropas;
     private final Continente continente;
     
     private Territorios(Continente continente) {
         this.continente = continente;
+        this.tropas = 1;
     }
 
     public Continente getContinente() {
         return continente;
     }
     
-    public static ArrayList<Territorios> totalidade(Continente continente) {
-        ArrayList<Territorios> tags = new ArrayList();
-        for(Territorios x : Territorios.values()) {
-            if(x.getContinente() == continente) {
-                tags.add(x);
-            }
+    public static boolean totalidade(Jogador jogador, Continente continente) {
+        return continente.getTerritorios().stream().allMatch((x) -> (x.getOcupante() == jogador));
+    }
+    
+    public boolean territorioVizinho(Territorios territorio) {
+        return this.getVizinhos().stream().anyMatch((x) -> (x.equals(territorio)));
+    }
+
+    public Jogador getOcupante() {
+        return ocupante;
+    }
+    
+    public void mudarOcupante(Jogador jogador) {
+        if(getTropas() == 0 && ocupante != jogador) {
+            ocupante = jogador;
         }
-        return tags;
+    }
+    
+    public void diminuirTropas(Jogador jogador, int quantidade) {
+        int resultado = this.tropas - quantidade;
+        if(resultado > 0) {
+            this.tropas -= quantidade;
+        }else {
+            this.tropas = 0;
+        }
+        mudarOcupante(jogador);
+    }
+    
+    public void addTropas(Jogador jogador, int quantidade) {
+        /*if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
+            this.tropas += quantidade;
+        }*/
+    }
+
+    public int getTropas() {
+        return tropas;
+    }
+    
+    public List<Territorios> getVizinhos() {
+        List<Territorios> vizinhos = null;
+        switch(this){
+            case ALASKA:
+                break;
+            case MACKENZIE:
+                break;
+            case GROELANDIA:
+                break;
+            case VANCOUVER:
+                break;
+            case OTTAWA:
+                break;
+            case LABRADOR:
+                break;
+            case CALIFORNIA:
+                break;
+            case NOVA_YORK:
+                break;
+            case MEXICO:
+                break;
+            case VENEZUELA:
+                break;
+            case BRASIL:
+                break;
+            case PERU:
+                break;
+            case ARGENTINA:
+                break;
+            case ISLANDIA:
+                break;
+            case INGLATERRA:
+                break;
+            case SUECIA:
+                break;
+            case MOSCOU:
+                break;
+            case FRANCA:
+                vizinhos.add(Territorios.INGLATERRA);
+                vizinhos.add(Territorios.ALEMANHA);
+                vizinhos.add(Territorios.POLONIA);
+                vizinhos.add(Territorios.ARGELIA);
+                vizinhos.add(Territorios.EGITO);
+                break;
+            case ALEMANHA:
+                vizinhos.add(Territorios.INGLATERRA);
+                vizinhos.add(Territorios.FRANCA);
+                vizinhos.add(Territorios.POLONIA);
+                break;
+            case POLONIA:
+                break;
+            case ARGELIA:
+                break;
+            case EGITO:
+                break;
+            case CONGO:
+                break;
+            case SUDAO:
+                break;
+            case AFRICA_DO_SUL:
+                break;
+            case MADAGASCAR:
+                break;
+            case ONSK:
+                break;
+            case DUDINKA:
+                break;
+            case TCHITA:
+                break;
+            case SIBERIA:
+                break;
+            case VLADVOSTOK:
+                break;
+            case ORIENTE_MEDIO:
+                break;
+            case ARAL:
+                break;
+            case INDIA:
+                break;
+            case CHINA:
+                break;
+            case VIETNAM:
+                break;
+            case JAPAO:
+                break;
+            case SUMATRA:
+                break;
+            case BORNEO:
+                break;
+            case NOVA_GUINE:
+                break;
+            case AUSTRALIA:
+                break;
+        }
+        
+        return Collections.unmodifiableList(vizinhos);
     }
     
 }

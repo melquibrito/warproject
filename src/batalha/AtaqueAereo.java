@@ -2,12 +2,12 @@ package batalha;
 
 import java.util.ArrayList;
 import java.util.Random;
+import territorios.Territorios;
 
-public class AtaqueAereo implements Ataque {
+public class AtaqueAereo implements Dado {
 
-    @Override
-    public ArrayList<ArrayList<Integer>> getDados(int dadosOfensivos, int dadosDefensivos) {
-        if((dadosOfensivos < 1 || dadosOfensivos > 3) || (dadosDefensivos < 1 || dadosDefensivos > 3)){
+    public ArrayList<ArrayList<Integer>> getDados(Territorios atacando, Territorios defendendo) {
+        /*if((dadosOfensivos < 1 || dadosOfensivos > 3) || (dadosDefensivos < 1 || dadosDefensivos > 3)){
             return null;
         }else {
             Random rand = new Random();
@@ -32,8 +32,8 @@ public class AtaqueAereo implements Ataque {
             lista.add(ofensivos);
             lista.add(defensivos);
             return lista;
-        }
-        
+        }*/
+        return null;
     }
     
 }

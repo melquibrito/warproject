@@ -11,7 +11,7 @@ public abstract class Jogador {
     private String nick;
     private int tropas;
     private int avioes;
-    private Ataque ataque;
+    private Dado dado;
     private int tropasADistribuir;
     private Partida partida;
 
@@ -47,10 +47,10 @@ public abstract class Jogador {
     }
 
     public void alternarAtaque() {
-        if(this.ataque instanceof AtaqueTerrestre && getAvioes() > 0) {
-            this.ataque = new AtaqueAereo();
+        if(this.dado instanceof AtaqueTerrestre && getAvioes() > 0) {
+            this.dado = new AtaqueAereo();
         }else if(getTropas() > 0){
-            this.ataque = new AtaqueTerrestre();
+            this.dado = new AtaqueTerrestre();
         }
     }
     
@@ -94,8 +94,8 @@ public abstract class Jogador {
         this.tropasADistribuir = tropasADistribuir;
     }
 
-    public Ataque getAtaque() {
-        return ataque;
+    public Dado getDado() {
+        return dado;
     }
     
     public Partida getPartida() {

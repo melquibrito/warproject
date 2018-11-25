@@ -6,15 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import jogadores.Jogador;
-import territorios.ListaTerritorios;
-import territorios.Territorio;
 
 public final class Partida {
-    private final List<Territorio> territorios;
     private final List<Jogador> jogadores;
 
     public Partida(Jogador[] listaDeJogadores) {
-        territorios = ListaTerritorios.getLista();
         jogadores = setJogadores(listaDeJogadores);
     }
     
