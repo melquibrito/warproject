@@ -18,17 +18,7 @@ public abstract class Estado {
     }
     
     public void finalizarEtapa(Jogador jogador) {
-        if(jogador.getEstado() instanceof Jogando) {
-            /*switch(jogador.getEstado().getEtapa()){
-                case DISTRIBUINDO_TROPAS:
-                    Estados.proximaFase(jogador.getEstado().getEstado());
-                    break;
-                case ATACANDO:
-                    break;
-                case DESLOCANDO_TROPAS:
-                    
-            }*/
-        }
+        Estados.proximaFase(jogador);
     }
     
     public abstract Estados getEstado();

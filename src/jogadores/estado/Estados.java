@@ -1,5 +1,7 @@
 package jogadores.estado;
 
+import jogadores.Jogador;
+
 public enum Estados {
     MORTO(Jogando.FALSO, "Fora da partida"),
     AGUARDANDO_A_VEZ(Jogando.FALSO, "Aguardando a vez"),
@@ -7,7 +9,7 @@ public enum Estados {
     DESCONECTADO(Jogando.FALSO, "Desconectado");
     
     public enum Jogando {
-        FALSO("Aguardando a vez ou desconectado"),
+        FALSO(""),
         DISTRIBUINDO_TROPAS("Distribuindo tropas"),
         ATACANDO("Atacando"),
         DESLOCANDO_TROPAS("Deslocando tropas");
@@ -32,17 +34,17 @@ public enum Estados {
         this.estado = estado;
     }
     
-    public static void proximaFase(Estados estado) {
-        if(estado == Estados.NA_VEZ) {
-            switch(estado.getEtapa()){
+    protected static void proximaFase(Jogador jogador) {
+        if(jogador.getEstado().getEstado() == Estados.NA_VEZ) {
+            switch(jogador.getEstado().getEstado().getEtapa()){
                 case DISTRIBUINDO_TROPAS:
-                    estado.etapa = Jogando.ATACANDO;
+                    jogador.getEstado().getEstado().etapa = Jogando.ATACANDO;
                     break;
                 case ATACANDO:
-                    estado.etapa = Jogando.DESLOCANDO_TROPAS;
+                    jogador.getEstado().getEstado().etapa = Jogando.DESLOCANDO_TROPAS;
                     break;
                 default:
-                     estado.etapa = Jogando.FALSO;
+                    jogador.getEstado().getEstado().etapa = Jogando.FALSO;
             }
         }
     }
