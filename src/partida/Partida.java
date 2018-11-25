@@ -27,9 +27,11 @@ public final class Partida {
     }
     
     public void iniciar() {
-        partida.sortearTerritorios();
-        partida.sortearObjetivos();
-        partida.iniciarPrimeiraRodada();
+        if(partida != null) {
+            partida.sortearTerritorios();
+            partida.sortearObjetivos();
+            partida.iniciarPrimeiraRodada();
+        }
     }
     
     public void encerrar() {
@@ -47,6 +49,10 @@ public final class Partida {
     private void iniciarPrimeiraRodada() {
         
     }
+    
+    public void proximo() {
+        
+    }
 
     public synchronized static Partida getPartida() {
         if(partida != null) {
@@ -54,10 +60,6 @@ public final class Partida {
         }else {
             return new Partida();
         }
-    }
-    
-    public void proximo() {
-        
     }
     
 }

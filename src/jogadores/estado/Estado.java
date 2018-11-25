@@ -10,7 +10,21 @@ public abstract class Estado {
     }
     
     public void atacar(Territorios de, Territorios para) {
-        
+        if(de.getOcupante() != null) {
+            if(de.getOcupante().getEstado().getEstado() == Estados.NA_VEZ) {
+                if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+                    //atacar
+                }else {
+                    if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
+                        System.out.println("Você ainda não terminou de distribuir suas tropas!");
+                    }else { 
+                        System.out.println("Você já finalizou o ataque. Não é mais possível atacar nesta rodada.");
+                    }
+                }
+            }else {
+                System.out.println("Você não pode atacar! Seu estado atual é: " + de.getOcupante().getEstado().getEstado());
+            }
+        }
     }
     
     public void desconnectar() {

@@ -46,14 +46,14 @@ public abstract class Jogador {
     public abstract Jogadores getCor();
     
     public void atacar(Territorios inimigo) {
-        if(getAvioes() > 0) {
-            
+        if(getAvioes() > 0 && getPartida() != null) {
+            this.estado.atacar(inimigo);
         }
     }
     
     public void atacar(Territorios de, Territorios para) {
-        if(getTropasADistribuir() == 0) {
-            //delegar metodo para Estado
+        if(getTropasADistribuir() == 0 && getPartida() != null) {
+            this.estado.atacar(de, para);
         }
     }
     
