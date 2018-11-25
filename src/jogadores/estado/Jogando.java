@@ -10,5 +10,10 @@ public class Jogando extends Estado {
     public void setEtapa(NaVez etapa) {
         this.etapa = etapa;
     }
+
+    @Override
+    public Estados getEstado() {
+        return Estados.NA_VEZ;
+    }
     
 }

@@ -1,5 +1,7 @@
 package jogadores;
 
+import partida.Partida;
+
 public enum Jogadores {
     AMARELO     (Amarelo.getInstance()),
     AZUL        (Azul.getInstance()),
@@ -21,6 +23,10 @@ public enum Jogadores {
     @Override
     public String toString() {
         return this.getJogador().getNick();
+    }
+    
+    public void setPartida(Partida partida) {
+        this.getJogador().setPartida(partida);
     }
     
 }

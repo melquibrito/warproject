@@ -14,12 +14,12 @@ public final class Partida {
     private Partida() {}
     
     public synchronized static void criar(Jogadores[] jogadores) {
-        if(jogadores.length > 1 && jogadores.length < 7) {
+        if(partida == null  && jogadores.length > 1 && jogadores.length < 7) {
             partida = new Partida();
             List<Jogadores> lista = new ArrayList();
             for(Jogadores x : jogadores) {
                 lista.add(x);
-                x.getJogador().setPartida(partida);
+                x.setPartida(partida);
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
@@ -48,8 +48,16 @@ public final class Partida {
         
     }
 
-    public static Partida getPartida() {
-        return partida;
+    public synchronized static Partida getPartida() {
+        if(partida != null) {
+            return partida;
+        }else {
+            return new Partida();
+        }
+    }
+    
+    public void proximo() {
+        
     }
     
 }

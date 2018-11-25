@@ -377,7 +377,6 @@ public enum Territorios {
                 vizinhos.add(Territorios.SUMATRA);
                 vizinhos.add(Territorios.BORNEO);
                 vizinhos.add(Territorios.NOVA_GUINE);
-                break;
                 
         }
         

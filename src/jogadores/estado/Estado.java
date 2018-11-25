@@ -1,9 +1,9 @@
 package jogadores.estado;
 
+import jogadores.Jogador;
 import territorios.Territorios;
 
 public abstract class Estado {
-    private Estados estado;
 
     public void atacar(Territorios inimigo) {
         
@@ -14,19 +14,27 @@ public abstract class Estado {
     }
     
     public void desconnectar() {
-        //delegar metodo para Estado
+        
     }
     
-    public void finalizarJogada() {
-        //delegar metodo para Estado
+    public void finalizarEtapa(Jogador jogador) {
+        if(jogador.getEstado().getEstado() == Estados.NA_VEZ) {
+            switch(jogador.getEstado().getEstado().getEtapa()){
+                case DISTRIBUINDO_TROPAS:
+                    Estados.proximaFase(jogador.getEstado().getEstado());
+                    break;
+                case ATACANDO:
+                    break;
+                case DESLOCANDO_TROPAS:
+                    
+            }
+        }
     }
     
-    public Estados getEstado() {
-        return estado;
-    }
+    public abstract Estados getEstado();
 
     public void setEstado(Estados estado) {
-        this.estado = estado;
+        
     }
     
 }

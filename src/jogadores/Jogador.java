@@ -61,8 +61,8 @@ public abstract class Jogador {
         //delegar metodo para Estado
     }
     
-    public void finalizarJogada() {
-        //delegar metodo para Estado
+    public void finalizarEtapa() {
+        this.estado.finalizarEtapa(this);
     }
 
     public void alternarAtaque() {
@@ -122,9 +122,7 @@ public abstract class Jogador {
     }
 
     public void setPartida(Partida partida) {
-        if(partida.jogadores.stream().anyMatch((x) -> (x.getJogador().equals(this)))) {
-            this.partida = partida;
-        }
+        this.partida = partida;
     }
     
     
