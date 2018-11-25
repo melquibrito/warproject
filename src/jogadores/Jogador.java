@@ -1,11 +1,30 @@
 package jogadores;
 
 import batalha.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import jogadores.estado.Estado;
 import partida.Partida;
 import territorios.Territorios;
 
 public abstract class Jogador {
+    
+    public final static List<Jogador> jogadores;
+    
+    static {
+        List<Jogador> lista = new ArrayList();
+        lista.add(Amarelo.getInstance());
+        lista.add(Azul.getInstance());
+        lista.add(Preto.getInstance());
+        lista.add(Roxo.getInstance());
+        lista.add(Verde.getInstance());
+        lista.add(Vermelho.getInstance());
+        lista.sort(Comparator.comparing(Jogador::toString));
+        jogadores = Collections.unmodifiableList(lista);
+        
+    }
     
     private Estado estado;
     private String nick;
@@ -24,7 +43,7 @@ public abstract class Jogador {
     
     @Override
     public abstract String toString();
-    public abstract Cor getCor();
+    public abstract Jogadores getCor();
     
     public void atacar(Territorios inimigo) {
         if(getAvioes() > 0) {

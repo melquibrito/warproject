@@ -10,7 +10,7 @@ public class Verde extends Jogador {
     
     private Verde() {}
     
-    public static Verde getInstance() {
+    protected static Verde getInstance() {
         return instance;
     }
     
@@ -20,8 +20,8 @@ public class Verde extends Jogador {
     }
 
     @Override
-    public Cor getCor() {
-        return Cor.VERDE;
+    public Jogadores getCor() {
+        return Jogadores.VERDE;
     }
     
 }

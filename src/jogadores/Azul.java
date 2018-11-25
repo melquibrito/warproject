@@ -10,7 +10,7 @@ public class Azul extends Jogador {
     
     private Azul() {}
     
-    public static Azul getInstance() {
+    protected static Azul getInstance() {
         return instance;
     }
     
@@ -20,8 +20,8 @@ public class Azul extends Jogador {
     }
 
     @Override
-    public Cor getCor() {
-        return Cor.AZUL;
+    public Jogadores getCor() {
+        return Jogadores.AZUL;
     }
     
 }

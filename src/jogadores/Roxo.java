@@ -10,7 +10,7 @@ public class Roxo extends Jogador {
     
     private Roxo() {}
     
-    public static Roxo getInstance() {
+    protected static Roxo getInstance() {
         return instance;
     }
     
@@ -20,8 +20,8 @@ public class Roxo extends Jogador {
     }
 
     @Override
-    public Cor getCor() {
-        return Cor.ROXO;
+    public Jogadores getCor() {
+        return Jogadores.ROXO;
     }
     
 }

@@ -10,7 +10,7 @@ public class Preto extends Jogador {
     
     private Preto() {}
     
-    public static Preto getInstance() {
+    protected static Preto getInstance() {
         return instance;
     }
     
@@ -20,8 +20,8 @@ public class Preto extends Jogador {
     }
 
     @Override
-    public Cor getCor() {
-        return Cor.PRETO;
+    public Jogadores getCor() {
+        return Jogadores.PRETO;
     }
     
 }
