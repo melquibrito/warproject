@@ -106,7 +106,7 @@ public enum Territorios {
         return ocupante;
     }
     
-    public void mudarOcupante(Jogador jogador) {
+    private void mudarOcupante(Jogador jogador) {
         if(getTropas() == 0 && ocupante != jogador) {
             ocupante = jogador;
         }
@@ -124,9 +124,6 @@ public enum Territorios {
     
     public void addTropas(int quantidade) {
         tropas += quantidade;
-        /*if(jogador.getTerritoriosOcupados().stream().anyMatch((x) -> (x.equals(this)))){
-            this.tropas += quantidade;
-        }*/
     }
 
     public int getTropas() {

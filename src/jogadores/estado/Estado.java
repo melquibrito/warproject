@@ -13,7 +13,7 @@ public abstract class Estado {
         if(de.getOcupante() != null) {
             if(de.getOcupante().getEstado().getEstado() == Estados.NA_VEZ) {
                 if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-                    //atacar
+                    de.getOcupante().getDado().jogar(de, para);
                 }else {
                     if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
                         System.out.println("Você ainda não terminou de distribuir suas tropas!");

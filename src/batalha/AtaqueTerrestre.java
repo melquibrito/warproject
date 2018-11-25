@@ -2,6 +2,7 @@ package batalha;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 import territorios.Territorios;
 
@@ -9,15 +10,51 @@ public final class AtaqueTerrestre implements Dado {
     
     @Override
     public void jogar(Territorios de, Territorios para) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(de.getOcupante() != para.getOcupante()) {
+            if(dados(de.getTropas(), 0) != 0 && dados(para.getTropas(), 1) != 0) {
+                int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
+                de.diminuirTropas(de.getOcupante(), perdas[0]);
+                para.diminuirTropas(para.getOcupante(), perdas[1]);
+            }
+        }
     }
     
+    private int dados(int tropas, int x) {
+        if(x == 0) {
+            if(tropas > 1) {
+                switch(tropas) {
+                    case 2:
+                        return 1;
+                    case 3:
+                        return 2;
+                    default:
+                        return 3;
+                }
+            }
+        }else {
+            if(tropas > 0) {
+                switch(tropas) {
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    default:
+                        return 3;
+                }
+            }
+        }
+        return 0;
+    }
+    
+    //Retornar dois inteiros: Quantidade de tropas a perder para o atacante e o defensor, respectivamente.
     @Override
     public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos) {
         if((dadosOfensivos < 1 || dadosOfensivos > 3) || (dadosDefensivos < 1 || dadosDefensivos > 3)){
             return null;
         }else {
             Random rand = new Random();
+            int[] perdas = {0, 0};
+            
             ArrayList<Integer> ofensivos = new ArrayList();
             ArrayList<Integer> defensivos = new ArrayList();
             
@@ -34,12 +71,25 @@ public final class AtaqueTerrestre implements Dado {
             Collections.reverse(ofensivos);
             Collections.reverse(defensivos);
             
-            ArrayList<ArrayList<Integer>> lista = new ArrayList();
-            lista.add(ofensivos);
-            lista.add(defensivos);
+            int batalhas;
             
-            //...
-            return null;
+            if(ofensivos.size() > defensivos.size()) {
+                batalhas = defensivos.size();
+            }else {
+                batalhas = ofensivos.size();
+            }
+            
+            for(int i = 0; i < batalhas; i++) {
+                if(Objects.equals(ofensivos.get(i), defensivos.get(i))) {
+                    perdas[0]++;
+                }else if(ofensivos.get(i) < defensivos.get(i)) {
+                    perdas[0]++;
+                }else {
+                    perdas[1]++;
+                }
+            }
+            
+            return perdas;
         }
     }
     
