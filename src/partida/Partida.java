@@ -27,11 +27,9 @@ public final class Partida {
     }
     
     public void iniciar() {
-        if(partida != null) {
-            partida.sortearTerritorios();
-            partida.sortearObjetivos();
-            partida.iniciarPrimeiraRodada();
-        }
+        partida.sortearTerritorios();
+        partida.sortearObjetivos();
+        partida.iniciarPrimeiraRodada();
     }
     
     public void encerrar() {
