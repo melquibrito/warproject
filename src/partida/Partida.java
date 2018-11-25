@@ -8,7 +8,7 @@ import jogadores.Jogadores;
 
 public final class Partida {
     private static Partida partida;
-    private List<Jogadores> jogadores;
+    public List<Jogadores> jogadores;
     private Jogador jogador;
 
     private Partida() {}

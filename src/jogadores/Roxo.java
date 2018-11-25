@@ -2,15 +2,14 @@ package jogadores;
 
 public class Roxo extends Jogador {
 
-    private final static Roxo instance;
-    
-    static {
-        instance = new Roxo();
-    }
+    private static Roxo instance;
     
     private Roxo() {}
     
     protected static Roxo getInstance() {
+        if(instance == null){
+            instance = new Roxo();
+        }
         return instance;
     }
     
