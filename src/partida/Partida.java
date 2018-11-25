@@ -19,6 +19,7 @@ public final class Partida {
             List<Jogadores> lista = new ArrayList();
             for(Jogadores x : jogadores) {
                 lista.add(x);
+                x.getJogador().setPartida(partida);
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);

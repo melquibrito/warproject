@@ -122,7 +122,9 @@ public abstract class Jogador {
     }
 
     public void setPartida(Partida partida) {
-        this.partida = partida;
+        if(partida.jogadores.stream().anyMatch((x) -> (x.getJogador().equals(this)))) {
+            this.partida = partida;
+        }
     }
     
     
