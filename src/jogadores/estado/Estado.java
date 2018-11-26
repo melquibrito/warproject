@@ -15,6 +15,7 @@ public abstract class Estado {
     
     public void abandonarPartida(Jogador jogador) {
         jogador.atualizarEstado(Estados.DESCONECTADO);
+        finalizarEtapa(jogador);
     }
     
     

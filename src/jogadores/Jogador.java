@@ -163,6 +163,7 @@ public abstract class Jogador implements Sujeito {
 
     public void setPartida(Partida partida) {
         this.partida = partida;
+        regitrarObservador(partida);
     }
 
     @Override

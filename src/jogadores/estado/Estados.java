@@ -35,8 +35,8 @@ public enum Estados {
     }
 
     protected static void proximaFase(Jogador jogador) {
-        if (jogador.getEstado().getEstado() == Estados.NA_VEZ) {
-            switch (jogador.getEstado().getEstado().getEtapa()) {
+        if (jogador != null) {
+            switch (jogador.getEstado().getEtapa()) {
                 case DISTRIBUINDO_TROPAS:
                     jogador.getEstado().getEstado().etapa = Jogando.ATACANDO;
                     break;
