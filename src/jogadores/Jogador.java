@@ -43,7 +43,7 @@ public abstract class Jogador implements Sujeito {
         setNickToDefault();
         this.avioes = 5;
         this.tropasADistribuir = 0;
-        
+        this.dado = new AtaqueTerrestre();
     }
     
     @Override
@@ -62,7 +62,7 @@ public abstract class Jogador implements Sujeito {
         }
     }
     
-    public void desconnectar() {
+    public void abandonarPartida() {
         //delegar metodo para Estado
     }
     
@@ -94,6 +94,13 @@ public abstract class Jogador implements Sujeito {
         this.nick = nome;
     }
 
+    public Dado getDado() {
+        if(this.getPartida() != null && this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+            return dado;
+        }
+        return null;
+    }
+    
     public int getTropas() {
         return tropas;
     }
@@ -125,10 +132,6 @@ public abstract class Jogador implements Sujeito {
     public void setTropasADistribuir(int tropasADistribuir) {
         this.tropasADistribuir = tropasADistribuir;
     }
-
-    public Dado getDado() {
-        return dado;
-    }
     
     public Partida getPartida() {
         return partida;
@@ -137,7 +140,6 @@ public abstract class Jogador implements Sujeito {
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
-    
     
     @Override
     public void regitrarObservador(Observador observador) {
