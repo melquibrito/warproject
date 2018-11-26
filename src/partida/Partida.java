@@ -5,9 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import jogadores.Jogador;
 import jogadores.Jogadores;
-import jogadores.estado.Estados;
 import jogadores.estado.Estados.Jogando;
-import territorios.Territorios;
 
 public final class Partida implements Observador {
     private static Partida partida;
@@ -69,6 +67,15 @@ public final class Partida implements Observador {
         if(j.getEstado().getEtapa() == Jogando.FALSO) {
             proximo();
         }
+    }
+    
+    public Jogador jogador(Jogadores jogador) {
+        for(Jogadores x : jogadores) {
+            if(x.equals(jogador)) {
+                return jogador.getJogador();
+            }
+        }
+        return null;
     }
     
 }
