@@ -15,6 +15,9 @@ public final class AtaqueTerrestre implements Dado {
                 int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
                 de.diminuirTropas(de.getOcupante(), perdas[0]);
                 para.diminuirTropas(para.getOcupante(), perdas[1]);
+                if(para.getTropas() == 0) {
+                    
+                }
             }
         }
     }
@@ -91,6 +94,10 @@ public final class AtaqueTerrestre implements Dado {
             
             return perdas;
         }
+    }
+    
+    private void invadir(Territorios de,Territorios para) {
+        de.moverTropas(1, para);
     }
     
 }

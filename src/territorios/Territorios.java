@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jogadores.Jogador;
+import jogadores.estado.Estados;
 
 public enum Territorios {
     
@@ -107,7 +108,7 @@ public enum Territorios {
     }
     
     private void mudarOcupante(Jogador jogador) {
-        if(getTropas() == 0 && ocupante != jogador) {
+        if(ocupante != jogador && jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
             ocupante = jogador;
         }
     }
@@ -118,12 +119,34 @@ public enum Territorios {
             this.tropas -= quantidade;
         }else {
             this.tropas = 0;
+            mudarOcupante(jogador);
         }
-        mudarOcupante(jogador);
+    }
+    
+    public void moverTropas(int tropas, Territorios para) {
+        if(this.getOcupante() != null && para.getOcupante() != null){
+            if(this.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO
+                    || this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DESLOCANDO_TROPAS) {
+                
+                if(territorioVizinho(para)){
+                    if(this.getOcupante() == para.getOcupante()) {
+                        if(this.getTropas() - tropas > 0){
+                            this.tropas -= tropas;
+                            para.tropas += tropas;
+                        }
+                    }
+                }
+                
+            }
+        }
     }
     
     public void addTropas(int quantidade) {
-        tropas += quantidade;
+        if(this.getOcupante() != null) {
+            if(this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS){
+                tropas += quantidade;
+            }
+        }
     }
 
     public int getTropas() {
