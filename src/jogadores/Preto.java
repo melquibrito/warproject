@@ -2,15 +2,12 @@ package jogadores;
 
 public class Preto extends Jogador {
 
-    private static Preto instance;
+    private final static Preto instance = new Preto();
 
     private Preto() {
     }
 
     protected static Preto getInstance() {
-        if (instance == null) {
-            instance = new Preto();
-        }
         return instance;
     }
 

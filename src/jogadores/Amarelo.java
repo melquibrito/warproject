@@ -2,15 +2,12 @@ package jogadores;
 
 public class Amarelo extends Jogador {
 
-    private static Amarelo instance;
+    private final static Amarelo instance = new Amarelo();
 
     private Amarelo() {
     }
 
     protected static Amarelo getInstance() {
-        if (instance == null) {
-            instance = new Amarelo();
-        }
         return instance;
     }
 

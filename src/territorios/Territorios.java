@@ -99,7 +99,7 @@ public enum Territorios {
     public static int ocupando(Jogador jogador) {
         int i = 0;
         for(Territorios x : Territorios.values()) {
-            if(x.getOcupante().equals(jogador)) {
+            if(x.getOcupante() == jogador) {
                 i++;
             }
         }
@@ -109,7 +109,7 @@ public enum Territorios {
     public static int ocupandoComMaisDeUmaTropa(Jogador jogador) {
         int i = 0;
         for(Territorios x : Territorios.values()) {
-            if(x.getOcupante().equals(jogador)) {
+            if(x.getOcupante() == jogador) {
                 if(x.getTropas() > 1) {
                     i++;
                 }
@@ -119,7 +119,7 @@ public enum Territorios {
     }
 
     public boolean vizinho(Territorios territorio) {
-        return this.getVizinhos().stream().anyMatch((x) -> (x.equals(territorio)));
+        return this.getVizinhos().stream().anyMatch((x) -> (x == territorio));
     }
 
     public Jogador getOcupante() {

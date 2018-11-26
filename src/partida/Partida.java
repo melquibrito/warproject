@@ -37,11 +37,11 @@ public final class Partida implements Observador {
     public synchronized static void criar(String[] jogadores) {
         if (partida == null && jogadores.length > 1 && jogadores.length < 7) {
             partida = new Partida();
-            
+
             List<Jogadores> lista = new ArrayList();
             List<Jogadores> aSortear = new ArrayList();
-            
-            for(Jogador x : Jogador.jogadores) {
+
+            for (Jogador x : Jogador.jogadores) {
                 aSortear.add(x.getCor());
             }
 
@@ -51,7 +51,7 @@ public final class Partida implements Observador {
                 sorteado.getJogador().setNick(jogadores[i]);
                 sorteado.getJogador().setPartida(partida);
                 aSortear.remove(sorteado);
-                
+
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
@@ -60,12 +60,12 @@ public final class Partida implements Observador {
 
     //Template Method
     public void iniciar() {
-        if(partida != null) {
+        if (partida != null) {
             partida.sortearTerritorios();
             partida.sortearObjetivos();
             partida.iniciarPrimeiraRodada();
         }
-        
+
     }
 
     public void encerrar() {
@@ -76,37 +76,37 @@ public final class Partida implements Observador {
         Territorios.resetar();
         ArrayList<Territorios> aSortear = new ArrayList();
         aSortear.addAll(Arrays.asList(Territorios.values()));
-        
+
         ArrayList<Jogadores> jog = new ArrayList();
-        
-        for(Jogadores x : partida.jogadores) {
+
+        for (Jogadores x : partida.jogadores) {
             jog.add(x);
         }
-        
-        int quantidade = aSortear.size()/jog.size();
-        
-        for(Jogadores j : jog) {
-            for(int i = 0; i < quantidade; i++) {
+
+        int quantidade = aSortear.size() / jog.size();
+
+        for (Jogadores j : jog) {
+            for (int i = 0; i < quantidade; i++) {
                 Territorios sorteado = aSortear.get(rand.nextInt(aSortear.size()));
                 sorteado.setOcupante(j.getJogador());
                 aSortear.remove(sorteado);
             }
         }
-        
-        if(!aSortear.isEmpty()) {
+
+        if (!aSortear.isEmpty()) {
             aSortear.get(rand.nextInt(aSortear.size())).setOcupante(jogadores.get(jogadores.size() - 1).getJogador());
             aSortear.get(0).setOcupante(jogadores.get(jogadores.size() - 2).getJogador());
         }
-        
+
         System.out.println("\nDISTRIBUIÇÃO ALEATÓRIA:\n");
-        for(Territorios x : Territorios.values()) {
-            System.out.printf("%-20s %-25s %s%d%n", x, x.getOcupante().getCor(), "Tropas: ", x.getTropas());
+        for (Territorios x : Territorios.values()) {
+            System.out.printf("%-20s %-25s %s%d%n", x, x.getOcupante(), "Tropas: ", x.getTropas());
         }
         System.out.println();
-        for(Jogadores x : partida.jogadores) {
+        for (Jogadores x : partida.jogadores) {
             System.out.println(x + ": " + Territorios.ocupando(x.getJogador()));
         }
-        
+
     }
 
     private void sortearObjetivos() {
@@ -128,13 +128,13 @@ public final class Partida implements Observador {
 
         for (int i = 0; i < jogadores.size(); i++) {
             Objetivo sorteado = null;
-            do{
+            do {
                 sorteado = objetivos.get(rand.nextInt(objetivos.size()));
-            }while(sorteado.getInimigo() == jogadores.get(i));
+            } while (sorteado.getInimigo() == jogadores.get(i));
             jogadores.get(i).getJogador().setObjetivo(sorteado);
             objetivos.remove(sorteado);
         }
-        
+
     }
 
     private void iniciarPrimeiraRodada() {

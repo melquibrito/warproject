@@ -42,11 +42,11 @@ public abstract class Jogador implements Sujeito {
         this.tropasADistribuir = 0;
         this.ataque = new AtaqueTerrestre();
         this.estado = new Jogando();
+        this.nick = null;
     }
 
     @Override
     public abstract String toString();
-
     public abstract Jogadores getCor();
 
     public void atacar(Territorios inimigo) {
