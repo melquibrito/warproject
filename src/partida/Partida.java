@@ -62,6 +62,7 @@ public final class Partida implements Observador {
         if (partida != null) {
             partida.sortearTerritorios();
             partida.sortearObjetivos();
+            partida.jogador = jogadores.get(0).getJogador();
             partida.iniciarPrimeiraRodada();
         }
 
