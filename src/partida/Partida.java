@@ -7,6 +7,7 @@ import jogadores.Jogador;
 import jogadores.Jogadores;
 import jogadores.estado.Estados;
 import jogadores.estado.Estados.Jogando;
+import territorios.Territorios;
 
 public final class Partida implements Observador {
     private static Partida partida;
@@ -61,7 +62,7 @@ public final class Partida implements Observador {
             return new Partida();
         }
     }
-
+    
     @Override
     public void atualizar(Sujeito sujeito) {
         Jogador j = (Jogador) sujeito;

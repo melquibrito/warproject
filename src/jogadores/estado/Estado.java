@@ -10,9 +10,9 @@ public abstract class Estado {
     }
     
     public void atacar(Territorios de, Territorios para) {
-        if(de.getOcupante() != null && de.territorioVizinho(para)) {
+        if(de.getOcupante() != null && de.vizinho(para)) {
             if(de.getOcupante().getEstado().getEstado() == Estados.NA_VEZ) {
-                if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+                if(de.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
                     de.getOcupante().getDado().jogar(de, para);
                 }else {
                     if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {

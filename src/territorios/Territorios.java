@@ -99,7 +99,7 @@ public enum Territorios {
         return continente.getTerritorios().stream().allMatch((x) -> (x.getOcupante() == jogador));
     }
     
-    public boolean territorioVizinho(Territorios territorio) {
+    public boolean vizinho(Territorios territorio) {
         return this.getVizinhos().stream().anyMatch((x) -> (x.equals(territorio)));
     }
 
@@ -128,7 +128,7 @@ public enum Territorios {
             if(this.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO
                     || this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DESLOCANDO_TROPAS) {
                 
-                if(territorioVizinho(para)){
+                if(vizinho(para)){
                     if(this.getOcupante() == para.getOcupante()) {
                         if(this.getTropas() - tropas > 0){
                             this.tropas -= tropas;

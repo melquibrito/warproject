@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Random;
+import jogadores.estado.Estados;
 import territorios.Territorios;
 
 public final class AtaqueTerrestre implements Dado {
@@ -16,7 +17,7 @@ public final class AtaqueTerrestre implements Dado {
                 de.diminuirTropas(de.getOcupante(), perdas[0]);
                 para.diminuirTropas(para.getOcupante(), perdas[1]);
                 if(para.getTropas() == 0) {
-                    
+                    invadir(de, para);
                 }
             }
         }
@@ -100,4 +101,13 @@ public final class AtaqueTerrestre implements Dado {
         de.moverTropas(1, para);
     }
     
+    public void invadirCom(int x, Territorios de, Territorios para) {
+        if(de.getOcupante() != null) {
+            if(de.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+                if(de.vizinho(para)) {
+                    
+                }
+            }
+        }
+    }
 }
