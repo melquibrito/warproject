@@ -1,36 +1,34 @@
 package batalha;
 
 import java.util.Random;
+import jogadores.Jogador;
 import territorios.Territorios;
 
-public class AtaqueAereo implements Dado {
+public final class AtaqueAereo implements Dado {
 
     @Override
-    public void jogar(Territorios de, Territorios para) {
-        
+    public void jogar(Jogador jogador, Territorios de, Territorios para) {
+        if(!para.getOcupante().equals(jogador) && jogador.getAvioes() > 0) {
+            
+        }
     }
     
-    @Override
-    public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos) {
+    public int[] calcularPerdas() {
         Random rand = new Random();
+        int[] perdas = {0, 0};
         
-        int r = rand.nextInt(6) + 1;
-        if (r < 4) {
-            dadosOfensivos = r;
-        } else {
-            dadosOfensivos = 0;
-        }
-
-        r = rand.nextInt(6) + 1;
-        if (r < 4) {
-            dadosDefensivos = r;
-        } else {
-            dadosDefensivos = 0;
+        int dado;
+        
+        for(int i = 0; i < perdas.length; i++) {
+            dado = rand.nextInt(6) + 1;
+            if (dado < 4) {
+                perdas[i] = dado;
+            } else {
+                perdas[i] = 0;
+            }
         }
         
-        //...
-        return null;
-
+        return perdas;
     }
 
 }

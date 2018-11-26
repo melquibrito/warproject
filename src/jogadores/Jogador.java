@@ -57,7 +57,7 @@ public abstract class Jogador implements Sujeito {
     
     public void atacar(Territorios de, Territorios para) {
         if(getTropasADistribuir() == 0 && getPartida() != null) {
-            this.estado.atacar(de, para);
+            this.estado.atacar(this, de, para);
         }
     }
     

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Random;
+import jogadores.Jogador;
 import jogadores.estado.Estados;
 import territorios.Territorios;
 
 public final class AtaqueTerrestre implements Dado {
     
     @Override
-    public void jogar(Territorios de, Territorios para) {
+    public void jogar(Jogador jogador, Territorios de, Territorios para) {
         if(de.getOcupante() != para.getOcupante()) {
             if(dados(de.getTropas(), 0) != 0 && dados(para.getTropas(), 1) != 0) {
                 int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
-                de.diminuirTropas(de.getOcupante(), perdas[0]);
+                de.diminuirTropas(jogador, perdas[0]);
                 para.diminuirTropas(para.getOcupante(), perdas[1]);
                 if(para.getTropas() == 0) {
                     invadir(de, para);
@@ -51,7 +52,6 @@ public final class AtaqueTerrestre implements Dado {
     }
     
     //Retornar dois inteiros: Quantidade de tropas a perder para o atacante e o defensor, respectivamente.
-    @Override
     public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos) {
         if((dadosOfensivos < 1 || dadosOfensivos > 3) || (dadosDefensivos < 1 || dadosDefensivos > 3)){
             return null;

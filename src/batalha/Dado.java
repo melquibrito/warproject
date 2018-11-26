@@ -1,8 +1,8 @@
 package batalha;
 
+import jogadores.Jogador;
 import territorios.Territorios;
 
 public interface Dado {
-    public abstract void jogar(Territorios de, Territorios para);
-    public int[] calcularPerdas(int dadosOfensivos, int dadosDefensivos);
+    public abstract void jogar(Jogador jogador, Territorios de, Territorios para);
 }

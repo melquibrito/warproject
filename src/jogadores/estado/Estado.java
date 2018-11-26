@@ -9,11 +9,11 @@ public abstract class Estado {
         
     }
     
-    public void atacar(Territorios de, Territorios para) {
-        if(de.getOcupante() != null && de.vizinho(para)) {
+    public void atacar(Jogador jogador, Territorios de, Territorios para) {
+        if(de.getOcupante() != null && de.vizinho(para) && jogador.equals(de.getOcupante())) {
             if(de.getOcupante().getEstado().getEstado() == Estados.NA_VEZ) {
                 if(de.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-                    de.getOcupante().getDado().jogar(de, para);
+                    de.getOcupante().getDado().jogar(jogador, de, para);
                 }else {
                     if(de.getOcupante().getEstado().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
                         System.out.println("Você ainda não terminou de distribuir suas tropas!");
