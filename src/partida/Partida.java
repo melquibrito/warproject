@@ -1,6 +1,7 @@
 package partida;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +9,7 @@ import jogadores.Jogador;
 import jogadores.Jogadores;
 import jogadores.estado.Estados.Jogando;
 import partida.objetivos.Objetivo;
+import territorios.Territorios;
 
 public final class Partida implements Observador {
 
@@ -71,7 +73,25 @@ public final class Partida implements Observador {
     }
 
     private void sortearTerritorios() {
-
+        ArrayList<Territorios> aSortear = new ArrayList();
+        aSortear.addAll(Arrays.asList(Territorios.values()));
+        
+        ArrayList<Jogadores> jog = new ArrayList();
+        
+        for(Jogadores x : jogadores) {
+            jog.add(x);
+        }
+        
+        int quantidade = Territorios.values().length/jog.size();
+        
+        for(Jogadores j : jog) {
+            for(int i = 0; i < quantidade; i++) {
+                for(Territorios t : aSortear) {
+                
+                }
+            }
+        }
+        
     }
 
     private void sortearObjetivos() {
@@ -92,7 +112,10 @@ public final class Partida implements Observador {
         }
 
         for (int i = 0; i < jogadores.size(); i++) {
-            Objetivo sorteado = objetivos.get(rand.nextInt(objetivos.size()));
+            Objetivo sorteado = null;
+            do{
+                sorteado = objetivos.get(rand.nextInt(objetivos.size()));
+            }while(sorteado.getInimigo() == jogadores.get(i));
             jogadores.get(i).getJogador().setObjetivo(sorteado);
             objetivos.remove(sorteado);
         }
