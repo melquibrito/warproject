@@ -8,8 +8,8 @@ import java.util.Random;
 import jogadores.Jogador;
 import jogadores.Jogadores;
 import jogadores.estado.Estados.Jogando;
-import partida.objetivos.Objetivo;
 import territorios.Territorios;
+import partida.objetivos.Objetivo;
 
 public final class Partida implements Observador {
 
@@ -17,6 +17,8 @@ public final class Partida implements Observador {
     private volatile static Partida partida;
     public List<Jogadores> jogadores;
     private Jogador jogador;
+    private int tropasADistribuir = 0;
+    private boolean primeiraRodada = false;
 
     private Partida() {
     }
@@ -102,6 +104,7 @@ public final class Partida implements Observador {
     //Template Method
     public void iniciar() {
         if (partida != null) {
+            System.out.println("Partida Iniciada!\n");
             partida.sortearTerritorios();
             partida.sortearObjetivos();
             partida.jogador = jogadores.get(0).getJogador();
@@ -112,6 +115,7 @@ public final class Partida implements Observador {
 
     public void encerrar() {
         partida = null;
+        System.out.println("Partida Encerrada!");
     }
 
     private void sortearTerritorios() {
@@ -182,15 +186,34 @@ public final class Partida implements Observador {
     }
 
     private void iniciarPrimeiraRodada() {
-
+        primeiraRodada = true;
     }
-
+    
+    private int getNovasTropas() {
+        if(partida != null) {
+            int t = Territorios.ocupando(jogador)/2;
+            
+        }
+        return 0;
+    }
+    
     private void proximo() {
-        int j = jogadores.indexOf(jogador) + 1;
-        if(j >= jogadores.size()) {
-            jogador = jogadores.get(0).getJogador();
+        if(!Objetivo.checar(jogador)){
+            int j = jogadores.indexOf(jogador) + 1;
+            if(j >= jogadores.size()) {
+                jogador = jogadores.get(0).getJogador();
+            }else {
+                jogador = jogadores.get(j).getJogador();
+                if(Objetivo.checar(jogador)){
+                    encerrar();
+                    System.out.println("O jogador " + jogador + " venceu o jogo!");
+                    System.out.println("O objetivo de " + jogador.getCor() + " era " + jogador.getObjetivo() + ".");
+                }
+            }
         }else {
-            jogador = jogadores.get(j).getJogador();
+            System.out.println("O jogador " + jogador + " venceu o jogo!");
+            System.out.println("O objetivo de " + jogador.getCor() + " era " + jogador.getObjetivo() + ".");
+            encerrar();
         }
         
     }
@@ -201,15 +224,6 @@ public final class Partida implements Observador {
         if (j.getEstado().getEtapa() == Jogando.FALSO) {
             proximo();
         }
-    }
-
-    public Jogador jogador(Jogadores jogador) {
-        for (Jogadores x : jogadores) {
-            if (x.equals(jogador)) {
-                return jogador.getJogador();
-            }
-        }
-        return null;
     }
 
 }
