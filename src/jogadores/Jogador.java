@@ -86,7 +86,7 @@ public abstract class Jogador implements Sujeito {
         return estado;
     }
 
-    public void atualizarEstado(Estados estado) {
+    public void atualizarEstado(Estados estado, Jogador jogador) {
         switch (estado) {
             case AGUARDANDO_A_VEZ:
                 this.estado = new Aguardando();
@@ -95,7 +95,7 @@ public abstract class Jogador implements Sujeito {
                 this.estado = new Jogando();
                 break;
             case MORTO:
-                this.estado = new Morto();
+                this.estado = new Morto(jogador);
                 break;
             case DESCONECTADO:
                 this.estado = new Desconectado();
@@ -183,4 +183,12 @@ public abstract class Jogador implements Sujeito {
         }
     }
 
+    public Objetivo getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Objetivo objetivo) {
+        this.objetivo = objetivo;
+    }
+    
 }
