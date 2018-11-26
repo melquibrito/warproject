@@ -1,7 +1,6 @@
 package partida;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -11,7 +10,7 @@ import jogadores.estado.Estados.Jogando;
 import partida.objetivos.Objetivo;
 
 public final class Partida implements Observador {
-    
+
     static Random rand = new Random();
     private static Partida partida;
     public List<Jogadores> jogadores;
@@ -32,39 +31,39 @@ public final class Partida implements Observador {
             partida.jogadores = Collections.unmodifiableList(lista);
         }
     }
-    
+
     public synchronized static void criar(String[] jogadores) {
         if (partida == null && jogadores.length > 1 && jogadores.length < 7) {
             partida = new Partida();
-            List<Jogadores> lista = new ArrayList();
-            ArrayList<Integer> retirado = new ArrayList();
             
-            for(int i = 0; i < jogadores.length; i++) {
-                boolean repetido = false;
-                int j;
-                do{
-                    j = rand.nextInt(Jogador.jogadores.size());
-                    for(int x : retirado) {
-                        if(x == j) {
-                            repetido = true;
-                        }
-                    }
-                }while(repetido);
-                lista.add(Jogador.jogadores.get(j).getCor());
-                Jogador.jogadores.get(j).setNick(jogadores[i]);
-                Jogador.jogadores.get(j).setPartida(partida);
-                retirado.add(j);
+            List<Jogadores> lista = new ArrayList();
+            List<Jogadores> aSortear = new ArrayList();
+            
+            for(Jogador x : Jogador.jogadores) {
+                aSortear.add(x.getCor());
+            }
+
+            for (int i = 0; i < jogadores.length; i++) {
+                Jogadores sorteado = aSortear.get(rand.nextInt(aSortear.size()));
+                lista.add(sorteado);
+                sorteado.getJogador().setNick(jogadores[i]);
+                sorteado.getJogador().setPartida(partida);
+                aSortear.remove(sorteado);
+                
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
         }
     }
-    
+
     //Template Method
     public void iniciar() {
-        partida.sortearTerritorios();
-        partida.sortearObjetivos();
-        partida.iniciarPrimeiraRodada();
+        if(partida != null) {
+            partida.sortearTerritorios();
+            partida.sortearObjetivos();
+            partida.iniciarPrimeiraRodada();
+        }
+        
     }
 
     public void encerrar() {
@@ -72,12 +71,32 @@ public final class Partida implements Observador {
     }
 
     private void sortearTerritorios() {
-        
+
     }
 
     private void sortearObjetivos() {
-        ArrayList<Objetivo> objetivos = new ArrayList();
-        objetivos.addAll(Arrays.asList(Objetivo.values()));
+        ArrayList<Objetivo> objetivos = Objetivo.getTodosExcetoOsDeDestruir();
+
+        ArrayList<Objetivo> objetivosAManter = new ArrayList();
+
+        for (Objetivo y : Objetivo.getObjetivosDeDestruirOponentes()) {
+            for (Jogadores x : jogadores) {
+                if (x.equals(y.getInimigo())) {
+                    objetivosAManter.add(y);
+                }
+            }
+        }
+
+        for (Objetivo x : objetivosAManter) {
+            objetivos.add(x);
+        }
+
+        for (int i = 0; i < jogadores.size(); i++) {
+            Objetivo sorteado = objetivos.get(rand.nextInt(objetivos.size()));
+            jogadores.get(i).getJogador().setObjetivo(sorteado);
+            objetivos.remove(sorteado);
+        }
+        
     }
 
     private void iniciarPrimeiraRodada() {

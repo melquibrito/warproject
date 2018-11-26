@@ -15,15 +15,53 @@ public enum Objetivo {
     AMERICA_DO_SUL_EUROPA_E_MAIS_UM,
     AFRICA_E_ASIA,
     EUROPA_OCEANIA_E_MAIS_UM,
-    DESTRUIR_AMARELO,
-    DESTRUIR_AZUL,
-    DESTRUIR_PRETO,
-    DESTRUIR_ROXO,
-    DESTRUIR_VERDE,
-    DESTRUIR_VERMELHO,
+    DESTRUIR_AMARELO(Jogadores.AMARELO),
+    DESTRUIR_AZUL(Jogadores.AZUL),
+    DESTRUIR_PRETO(Jogadores.PRETO),
+    DESTRUIR_ROXO(Jogadores.ROXO),
+    DESTRUIR_VERDE(Jogadores.VERDE),
+    DESTRUIR_VERMELHO(Jogadores.VERMELHO),
     CONQUISTAR_24_TERRITORIOS,
     CONQUISTAR_18_2_EM_CADA;
 
+    private Jogadores inimigo = null;
+    
+    private Objetivo(Jogadores jogador) {
+        this.inimigo = jogador;
+    }
+    
+    private Objetivo() {
+        
+    }
+    
+    public Jogadores getInimigo() {
+        return inimigo;
+    }
+    
+    public static ArrayList<Objetivo> getObjetivosDeDestruirOponentes () {
+        ArrayList<Objetivo> lista = new ArrayList();
+        lista.add(DESTRUIR_AMARELO);
+        lista.add(DESTRUIR_AZUL);
+        lista.add(DESTRUIR_PRETO);
+        lista.add(DESTRUIR_ROXO);
+        lista.add(DESTRUIR_VERDE);
+        lista.add(DESTRUIR_VERMELHO);
+        return lista;
+    }
+    
+    public static ArrayList<Objetivo> getTodosExcetoOsDeDestruir () {
+        ArrayList<Objetivo> lista = new ArrayList();
+        lista.add(AMERICA_DO_NORTE_E_OCEANIA);
+        lista.add(AMERICA_DO_NORTE_E_AFRICA);
+        lista.add(ASIA_E_AMERICA_DO_SUL);
+        lista.add(AMERICA_DO_SUL_EUROPA_E_MAIS_UM);
+        lista.add(AFRICA_E_ASIA);
+        lista.add(EUROPA_OCEANIA_E_MAIS_UM);
+        lista.add(CONQUISTAR_24_TERRITORIOS);
+        lista.add(CONQUISTAR_18_2_EM_CADA);
+        return lista;
+    }
+    
     public static boolean checar(Jogador jogador) {
         switch (jogador.getObjetivo()) {
             case AMERICA_DO_NORTE_E_OCEANIA:
