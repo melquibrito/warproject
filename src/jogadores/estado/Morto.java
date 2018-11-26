@@ -15,6 +15,7 @@ public class Morto extends Estado {
         return Estados.MORTO;
     }
 
+    @Override
     public Jogador getCreditos() {
         return creditos;
     }

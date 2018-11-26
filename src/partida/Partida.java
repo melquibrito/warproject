@@ -1,12 +1,14 @@
 package partida;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import jogadores.Jogador;
 import jogadores.Jogadores;
 import jogadores.estado.Estados.Jogando;
+import partida.objetivos.Objetivo;
 
 public final class Partida implements Observador {
     
@@ -74,7 +76,8 @@ public final class Partida implements Observador {
     }
 
     private void sortearObjetivos() {
-
+        ArrayList<Objetivo> objetivos = new ArrayList();
+        objetivos.addAll(Arrays.asList(Objetivo.values()));
     }
 
     private void iniciarPrimeiraRodada() {

@@ -29,4 +29,6 @@ public abstract class Estado {
         return getEstado().getEtapa();
     }
     
+    public Jogador getCreditos() {return null;}
+    
 }

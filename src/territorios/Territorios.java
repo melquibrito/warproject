@@ -95,6 +95,28 @@ public enum Territorios {
     public static boolean totalidade(Jogador jogador, Continente continente) {
         return continente.getTerritorios().stream().allMatch((x) -> (x.getOcupante() == jogador));
     }
+    
+    public static int ocupando(Jogador jogador) {
+        int i = 0;
+        for(Territorios x : Territorios.values()) {
+            if(x.getOcupante().equals(jogador)) {
+                i++;
+            }
+        }
+        return i;
+    }
+    
+    public static int ocupandoComMaisDeUmaTropa(Jogador jogador) {
+        int i = 0;
+        for(Territorios x : Territorios.values()) {
+            if(x.getOcupante().equals(jogador)) {
+                if(x.getTropas() > 1) {
+                    i++;
+                }
+            }
+        }
+        return i;
+    }
 
     public boolean vizinho(Territorios territorio) {
         return this.getVizinhos().stream().anyMatch((x) -> (x.equals(territorio)));
