@@ -16,7 +16,7 @@ public final class AtaqueTerrestre implements Dado {
             if(dados(de.getTropas(), 0) != 0 && dados(para.getTropas(), 1) != 0) {
                 int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
                 de.diminuirTropas(jogador, perdas[0]);
-                para.diminuirTropas(para.getOcupante(), perdas[1]);
+                para.diminuirTropas(jogador, perdas[1]);
                 if(para.getTropas() == 0) {
                     invadir(de, para);
                 }
@@ -102,12 +102,6 @@ public final class AtaqueTerrestre implements Dado {
     }
     
     public void invadirCom(int x, Territorios de, Territorios para) {
-        if(de.getOcupante() != null) {
-            if(de.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-                if(de.vizinho(para)) {
-                    
-                }
-            }
-        }
+        de.moverTropas(x, para);
     }
 }
