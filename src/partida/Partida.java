@@ -12,7 +12,7 @@ public final class Partida implements Observador {
     
     static Random rand = new Random();
     private static Partida partida;
-    public static List<Jogadores> jogadores;
+    public List<Jogadores> jogadores;
     private Jogador jogador;
 
     private Partida() {
