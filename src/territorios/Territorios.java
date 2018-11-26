@@ -109,12 +109,25 @@ public enum Territorios {
     }
 
     public void diminuirTropas(Jogador jogador, int quantidade) {
-        int resultado = this.tropas - quantidade;
-        if (resultado > 0) {
-            this.tropas -= quantidade;
+        if (!jogador.equals(this.getOcupante())) {
+            if (jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+                int resultado = this.tropas - quantidade;
+
+                if (resultado > 0) {
+                    this.tropas -= quantidade;
+                } else {
+                    this.tropas = 0;
+                    mudarOcupante(jogador);
+                }
+            }
         } else {
-            this.tropas = 0;
-            mudarOcupante(jogador);
+            int resultado = this.tropas - quantidade;
+
+            if (resultado > 1) {
+                this.tropas -= quantidade;
+            } else {
+                this.tropas = 1;
+            }
         }
     }
 

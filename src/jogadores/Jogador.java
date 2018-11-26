@@ -121,8 +121,13 @@ public abstract class Jogador implements Sujeito {
     }
 
     public void diminuirAvioes(int quantidade) {
-        if (this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-            this.avioes -= quantidade;
+        if (this.estado.getEtapa() == Estados.Jogando.ATACANDO) {
+            int resultado = this.avioes - quantidade;
+            if(resultado > 0) {
+                this.avioes -= quantidade;
+            }else {
+                this.avioes = 0;
+            }
         }
     }
 
