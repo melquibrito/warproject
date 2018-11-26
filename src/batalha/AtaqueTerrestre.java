@@ -11,13 +11,15 @@ public final class AtaqueTerrestre implements Ataque {
 
     @Override
     public void jogar(Jogador jogador, Territorios de, Territorios para) {
-        if (de.getOcupante() != para.getOcupante()) {
-            if (dados(de.getTropas(), 0) != 0 && dados(para.getTropas(), 1) != 0) {
-                int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
-                de.diminuirTropas(jogador, perdas[0]);
-                para.diminuirTropas(jogador, perdas[1]);
-                if (para.getTropas() == 0) {
-                    invadir(de, para);
+        if(jogador != null && de != null) {
+            if (de.getOcupante() != null && de.getOcupante() != para.getOcupante()) {
+                if (dados(de.getTropas(), 0) != 0 && dados(para.getTropas(), 1) != 0) {
+                    int[] perdas = calcularPerdas(dados(de.getTropas(), 0), dados(para.getTropas(), 1));
+                    de.diminuirTropas(jogador, perdas[0]);
+                    para.diminuirTropas(jogador, perdas[1]);
+                    if (para.getTropas() == 0) {
+                        invadir(de, para);
+                    }
                 }
             }
         }

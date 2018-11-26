@@ -6,7 +6,7 @@ import territorios.Territorios;
 public abstract class Estado {
     
     public void atacar(Jogador jogador, Territorios de, Territorios para) {
-        System.out.println("Você ainda não pode atacar!");
+        System.out.println("Aguarde a sua vez para atacar!");
     }
     
     public void descolarTropas(Jogador jogador, Territorios de, Territorios para) {
