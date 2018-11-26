@@ -14,13 +14,35 @@ import territorios.Territorios;
 public final class Partida implements Observador {
 
     static Random rand = new Random();
-    private static Partida partida;
+    private volatile static Partida partida;
     public List<Jogadores> jogadores;
     private Jogador jogador;
 
     private Partida() {
     }
-
+    
+    
+    public static Partida getPartida() {
+        if(partida != null) {
+            return partida;
+        }else {
+            criar();
+            return partida;
+        }
+    }
+    
+    public synchronized static void criar() {
+        if(partida == null) {
+            partida = new Partida();
+            List<Jogadores> lista = new ArrayList();
+            for(Jogador x : Jogador.jogadores) {
+                lista.add(x.getCor());
+            }
+            Collections.shuffle(lista);
+            partida.jogadores = Collections.unmodifiableList(lista);
+        }
+    }
+    
     public synchronized static void criar(Jogadores[] jogadores) {
         if (partida == null && jogadores.length > 1 && jogadores.length < 7) {
             partida = new Partida();
@@ -31,6 +53,16 @@ public final class Partida implements Observador {
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
+        }else {
+            if(jogadores.length < 2) {
+                System.out.println("Quantidade de jogadores insuficienten para iniciar uma partida!");
+            }
+            if(jogadores.length > 6) {
+                System.out.println("A partida não pode conter mais do que seis jogadores!");
+            }
+            if(partida != null) {
+                System.out.println("A partida já foi criada! Encerre esta partida para começar uma outra...");
+            }
         }
     }
 
@@ -54,6 +86,16 @@ public final class Partida implements Observador {
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
+        }else {
+            if(jogadores.length < 2) {
+                System.out.println("Quantidade de jogadores insuficienten para iniciar uma partida!");
+            }
+            if(jogadores.length > 6) {
+                System.out.println("A partida não pode conter mais do que seis jogadores!");
+            }
+            if(partida != null) {
+                System.out.println("A partida já foi criada! Encerre esta partida para começar uma outra...");
+            }
         }
     }
 
@@ -144,15 +186,13 @@ public final class Partida implements Observador {
     }
 
     private void proximo() {
-
-    }
-
-    public synchronized static Partida getPartida() {
-        if (partida != null) {
-            return partida;
-        } else {
-            return new Partida();
+        int j = jogadores.indexOf(jogador) + 1;
+        if(j >= jogadores.size()) {
+            jogador = jogadores.get(0).getJogador();
+        }else {
+            jogador = jogadores.get(j).getJogador();
         }
+        
     }
 
     @Override
