@@ -13,7 +13,7 @@ public class Roxo extends Jogador {
 
     @Override
     public String toString() {
-        return "Roxo";
+        return "ROXO";
     }
 
     @Override

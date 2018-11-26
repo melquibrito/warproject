@@ -13,7 +13,7 @@ public class Azul extends Jogador {
 
     @Override
     public String toString() {
-        return "Azul";
+        return "AZUL";
     }
 
     @Override

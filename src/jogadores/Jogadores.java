@@ -19,7 +19,15 @@ public enum Jogadores {
     public Jogador getJogador() {
         return jogador;
     }
-
+    
+    @Override
+    public String toString() {
+        if(this.jogador.getNick() != null) {
+            return this.jogador.getNick() + "(" + this.jogador + ")";
+        }
+        return this.jogador.toString();
+    }
+    
     public void setPartida(Partida partida) {
         this.getJogador().setPartida(partida);
     }

@@ -45,13 +45,12 @@ public final class Partida implements Observador {
                 aSortear.add(x.getCor());
             }
 
-            for (int i = 0; i < jogadores.length; i++) {
+            for (String j : jogadores) {
                 Jogadores sorteado = aSortear.get(rand.nextInt(aSortear.size()));
                 lista.add(sorteado);
-                sorteado.getJogador().setNick(jogadores[i]);
+                sorteado.getJogador().setNick(j);
                 sorteado.getJogador().setPartida(partida);
                 aSortear.remove(sorteado);
-
             }
             Collections.shuffle(lista);
             partida.jogadores = Collections.unmodifiableList(lista);
@@ -94,13 +93,15 @@ public final class Partida implements Observador {
         }
 
         if (!aSortear.isEmpty()) {
-            aSortear.get(rand.nextInt(aSortear.size())).setOcupante(jogadores.get(jogadores.size() - 1).getJogador());
-            aSortear.get(0).setOcupante(jogadores.get(jogadores.size() - 2).getJogador());
+            Territorios sorteado = aSortear.get(rand.nextInt(aSortear.size()));
+            sorteado.setOcupante(partida.jogadores.get(partida.jogadores.size() - 1).getJogador());
+            aSortear.remove(sorteado);
+            aSortear.get(aSortear.size() - 1).setOcupante(partida.jogadores.get(partida.jogadores.size() - 2).getJogador());
         }
 
         System.out.println("\nDISTRIBUIÇÃO ALEATÓRIA:\n");
         for (Territorios x : Territorios.values()) {
-            System.out.printf("%-20s %-25s %s%d%n", x, x.getOcupante(), "Tropas: ", x.getTropas());
+            System.out.printf("%-20s %-25s %s%d%n", x, x.getOcupante().getCor(), "Tropas: ", x.getTropas());
         }
         System.out.println();
         for (Jogadores x : partida.jogadores) {
