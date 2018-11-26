@@ -3,16 +3,17 @@ package jogadores;
 public class Amarelo extends Jogador {
 
     private static Amarelo instance;
-    
-    private Amarelo() {}
-    
+
+    private Amarelo() {
+    }
+
     protected static Amarelo getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new Amarelo();
         }
         return instance;
     }
-    
+
     @Override
     public String toString() {
         return "Amarelo";
@@ -22,5 +23,5 @@ public class Amarelo extends Jogador {
     public Jogadores getCor() {
         return Jogadores.AMARELO;
     }
-    
+
 }

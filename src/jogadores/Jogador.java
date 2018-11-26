@@ -13,9 +13,9 @@ import partida.Sujeito;
 import territorios.Territorios;
 
 public abstract class Jogador implements Sujeito {
-    
+
     public final static List<Jogador> jogadores;
-    
+
     static {
         List<Jogador> lista = new ArrayList();
         lista.add(Amarelo.getInstance());
@@ -26,9 +26,9 @@ public abstract class Jogador implements Sujeito {
         lista.add(Vermelho.getInstance());
         lista.sort(Comparator.comparing(Jogador::toString));
         jogadores = Collections.unmodifiableList(lista);
-        
+
     }
-    
+
     private Estado estado;
     private String nick;
     private int tropas;
@@ -36,7 +36,7 @@ public abstract class Jogador implements Sujeito {
     private Dado dado;
     private int tropasADistribuir;
     private Partida partida;
-    
+
     private Observador observador;
 
     public Jogador() {
@@ -45,39 +45,40 @@ public abstract class Jogador implements Sujeito {
         this.tropasADistribuir = 0;
         this.dado = new AtaqueTerrestre();
     }
-    
+
     @Override
     public abstract String toString();
+
     public abstract Jogadores getCor();
-    
+
     public void atacar(Territorios inimigo) {
-        if(getAvioes() > 0 && getPartida() != null) {
+        if (getAvioes() > 0 && getPartida() != null) {
             this.estado.atacar(inimigo);
         }
     }
-    
+
     public void atacar(Territorios de, Territorios para) {
-        if(getTropasADistribuir() == 0 && getPartida() != null) {
+        if (getTropasADistribuir() == 0 && getPartida() != null) {
             this.estado.atacar(this, de, para);
         }
     }
-    
+
     public void abandonarPartida() {
         //delegar metodo para Estado
     }
-    
+
     public void finalizarEtapa() {
         this.estado.finalizarEtapa(this);
     }
 
     public void alternarAtaque() {
-        if(this.dado instanceof AtaqueTerrestre && getAvioes() > 0) {
+        if (this.dado instanceof AtaqueTerrestre && getAvioes() > 0) {
             this.dado = new AtaqueAereo();
-        }else if(getTropas() > 0){
+        } else if (getTropas() > 0) {
             this.dado = new AtaqueTerrestre();
         }
     }
-    
+
     public Estado getEstado() {
         return estado;
     }
@@ -85,7 +86,7 @@ public abstract class Jogador implements Sujeito {
     public void setNickToDefault() {
         this.nick = this.toString();
     }
-    
+
     public String getNick() {
         return nick;
     }
@@ -95,12 +96,12 @@ public abstract class Jogador implements Sujeito {
     }
 
     public Dado getDado() {
-        if(this.getPartida() != null && this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+        if (this.getPartida() != null && this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
             return dado;
         }
         return null;
     }
-    
+
     public int getTropas() {
         return tropas;
     }
@@ -114,13 +115,13 @@ public abstract class Jogador implements Sujeito {
     }
 
     public void addAvioes(int quantidade) {
-        if(this.getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
+        if (this.getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
             this.avioes += quantidade;
         }
     }
-    
+
     public void diminuirAvioes(int quantidade) {
-        if(this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+        if (this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
             this.avioes -= quantidade;
         }
     }
@@ -132,7 +133,7 @@ public abstract class Jogador implements Sujeito {
     public void setTropasADistribuir(int tropasADistribuir) {
         this.tropasADistribuir = tropasADistribuir;
     }
-    
+
     public Partida getPartida() {
         return partida;
     }
@@ -140,7 +141,7 @@ public abstract class Jogador implements Sujeito {
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
-    
+
     @Override
     public void regitrarObservador(Observador observador) {
         this.observador = observador;
@@ -153,9 +154,9 @@ public abstract class Jogador implements Sujeito {
 
     @Override
     public void notificarObservador() {
-        if(observador != null) {
+        if (observador != null) {
             observador.atualizar(this);
         }
     }
-    
+
 }

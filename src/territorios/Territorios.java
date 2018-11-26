@@ -7,85 +7,80 @@ import jogadores.Jogador;
 import jogadores.estado.Estados;
 
 public enum Territorios {
-    
+
     //America do Norte
-    ALASKA          (Continente.AMERICA_DO_NORTE), 
-    MACKENZIE       (Continente.AMERICA_DO_NORTE), 
-    GROELANDIA      (Continente.AMERICA_DO_NORTE), 
-    VANCOUVER       (Continente.AMERICA_DO_NORTE), 
-    OTTAWA          (Continente.AMERICA_DO_NORTE), 
-    LABRADOR        (Continente.AMERICA_DO_NORTE), 
-    CALIFORNIA      (Continente.AMERICA_DO_NORTE), 
-    NOVA_YORK       (Continente.AMERICA_DO_NORTE), 
-    MEXICO          (Continente.AMERICA_DO_NORTE),
-    
+    ALASKA(Continente.AMERICA_DO_NORTE),
+    MACKENZIE(Continente.AMERICA_DO_NORTE),
+    GROELANDIA(Continente.AMERICA_DO_NORTE),
+    VANCOUVER(Continente.AMERICA_DO_NORTE),
+    OTTAWA(Continente.AMERICA_DO_NORTE),
+    LABRADOR(Continente.AMERICA_DO_NORTE),
+    CALIFORNIA(Continente.AMERICA_DO_NORTE),
+    NOVA_YORK(Continente.AMERICA_DO_NORTE),
+    MEXICO(Continente.AMERICA_DO_NORTE),
     //America do Sul
-    VENEZUELA       (Continente.AMERICA_DO_SUL), 
-    BRASIL          (Continente.AMERICA_DO_SUL), 
-    PERU            (Continente.AMERICA_DO_SUL), 
-    ARGENTINA       (Continente.AMERICA_DO_SUL),
-    
+    VENEZUELA(Continente.AMERICA_DO_SUL),
+    BRASIL(Continente.AMERICA_DO_SUL),
+    PERU(Continente.AMERICA_DO_SUL),
+    ARGENTINA(Continente.AMERICA_DO_SUL),
     //Europa
-    ISLANDIA        (Continente.EUROPA), 
-    INGLATERRA      (Continente.EUROPA), 
-    SUECIA          (Continente.EUROPA), 
-    MOSCOU          (Continente.EUROPA), 
-    FRANCA          (Continente.EUROPA), 
-    ALEMANHA        (Continente.EUROPA), 
-    POLONIA         (Continente.EUROPA),
-    
+    ISLANDIA(Continente.EUROPA),
+    INGLATERRA(Continente.EUROPA),
+    SUECIA(Continente.EUROPA),
+    MOSCOU(Continente.EUROPA),
+    FRANCA(Continente.EUROPA),
+    ALEMANHA(Continente.EUROPA),
+    POLONIA(Continente.EUROPA),
     //Africa
-    ARGELIA         (Continente.AFRICA), 
-    EGITO           (Continente.AFRICA), 
-    CONGO           (Continente.AFRICA), 
-    SUDAO           (Continente.AFRICA), 
-    AFRICA_DO_SUL   (Continente.AFRICA), 
-    MADAGASCAR      (Continente.AFRICA),
-    
+    ARGELIA(Continente.AFRICA),
+    EGITO(Continente.AFRICA),
+    CONGO(Continente.AFRICA),
+    SUDAO(Continente.AFRICA),
+    AFRICA_DO_SUL(Continente.AFRICA),
+    MADAGASCAR(Continente.AFRICA),
     //Asia
-    OMSK            (Continente.ASIA), 
-    DUDINKA         (Continente.ASIA),
-    MONGOLIA        (Continente.ASIA),
-    TCHITA          (Continente.ASIA), 
-    SIBERIA         (Continente.ASIA), 
-    VLADVOSTOK      (Continente.ASIA), 
-    ORIENTE_MEDIO   (Continente.ASIA), 
-    ARAL            (Continente.ASIA), 
-    INDIA           (Continente.ASIA), 
-    CHINA           (Continente.ASIA), 
-    VIETNAM         (Continente.ASIA), 
-    JAPAO           (Continente.ASIA),
-    
+    OMSK(Continente.ASIA),
+    DUDINKA(Continente.ASIA),
+    MONGOLIA(Continente.ASIA),
+    TCHITA(Continente.ASIA),
+    SIBERIA(Continente.ASIA),
+    VLADVOSTOK(Continente.ASIA),
+    ORIENTE_MEDIO(Continente.ASIA),
+    ARAL(Continente.ASIA),
+    INDIA(Continente.ASIA),
+    CHINA(Continente.ASIA),
+    VIETNAM(Continente.ASIA),
+    JAPAO(Continente.ASIA),
     //Oceania
-    SUMATRA         (Continente.OCEANIA), 
-    BORNEO          (Continente.OCEANIA), 
-    NOVA_GUINE      (Continente.OCEANIA), 
-    AUSTRALIA       (Continente.OCEANIA);
-    
+    SUMATRA(Continente.OCEANIA),
+    BORNEO(Continente.OCEANIA),
+    NOVA_GUINE(Continente.OCEANIA),
+    AUSTRALIA(Continente.OCEANIA);
+
     public enum Continente {
-        AFRICA, 
-        AMERICA_DO_NORTE, 
-        AMERICA_DO_SUL, 
-        ASIA, 
-        EUROPA, 
+        AFRICA,
+        AMERICA_DO_NORTE,
+        AMERICA_DO_SUL,
+        ASIA,
+        EUROPA,
         OCEANIA;
-        
+
         public List<Territorios> getTerritorios() {
             ArrayList<Territorios> totalidade = new ArrayList();
-            for(Territorios x : Territorios.values()) {
-                if(x.getContinente() == this) {
+            for (Territorios x : Territorios.values()) {
+                if (x.getContinente() == this) {
                     totalidade.add(x);
                 }
             }
             return Collections.unmodifiableList(totalidade);
         }
-        
+
     }
-    
+
     private Jogador ocupante;
     private int tropas;
     private final Continente continente;
-    
+
     private Territorios(Continente continente) {
         this.continente = continente;
         this.tropas = 1;
@@ -94,11 +89,11 @@ public enum Territorios {
     public Continente getContinente() {
         return continente;
     }
-    
+
     public static boolean totalidade(Jogador jogador, Continente continente) {
         return continente.getTerritorios().stream().allMatch((x) -> (x.getOcupante() == jogador));
     }
-    
+
     public boolean vizinho(Territorios territorio) {
         return this.getVizinhos().stream().anyMatch((x) -> (x.equals(territorio)));
     }
@@ -106,44 +101,44 @@ public enum Territorios {
     public Jogador getOcupante() {
         return ocupante;
     }
-    
+
     private void mudarOcupante(Jogador jogador) {
-        if(ocupante != jogador && jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+        if (ocupante != jogador && jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
             ocupante = jogador;
         }
     }
-    
+
     public void diminuirTropas(Jogador jogador, int quantidade) {
         int resultado = this.tropas - quantidade;
-        if(resultado > 0) {
+        if (resultado > 0) {
             this.tropas -= quantidade;
-        }else {
+        } else {
             this.tropas = 0;
             mudarOcupante(jogador);
         }
     }
-    
+
     public void moverTropas(int tropas, Territorios para) {
-        if(this.getOcupante() != null && para.getOcupante() != null){
-            if(this.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO
+        if (this.getOcupante() != null && para.getOcupante() != null) {
+            if (this.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO
                     || this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DESLOCANDO_TROPAS) {
-                
-                if(vizinho(para)){
-                    if(this.getOcupante() == para.getOcupante()) {
-                        if(this.getTropas() - tropas > 0){
+
+                if (vizinho(para)) {
+                    if (this.getOcupante() == para.getOcupante()) {
+                        if (this.getTropas() - tropas > 0) {
                             this.tropas -= tropas;
                             para.tropas += tropas;
                         }
                     }
                 }
-                
+
             }
         }
     }
-    
+
     public void addTropas(int quantidade) {
-        if(this.getOcupante() != null) {
-            if(this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS){
+        if (this.getOcupante() != null) {
+            if (this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
                 tropas += quantidade;
             }
         }
@@ -152,10 +147,10 @@ public enum Territorios {
     public int getTropas() {
         return tropas;
     }
-    
+
     public List<Territorios> getVizinhos() {
         List<Territorios> vizinhos = new ArrayList();
-        switch(this){
+        switch (this) {
             case ALASKA:
                 vizinhos.add(Territorios.VLADVOSTOK);
                 vizinhos.add(Territorios.MACKENZIE);
@@ -397,10 +392,10 @@ public enum Territorios {
                 vizinhos.add(Territorios.SUMATRA);
                 vizinhos.add(Territorios.BORNEO);
                 vizinhos.add(Territorios.NOVA_GUINE);
-                
+
         }
-        
+
         return Collections.unmodifiableList(vizinhos);
     }
-    
+
 }
