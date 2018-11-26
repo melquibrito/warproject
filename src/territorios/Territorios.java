@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import jogadores.Jogador;
 import jogadores.estado.Estados;
+import partida.Tropa;
 
 public enum Territorios {
 
@@ -78,12 +79,13 @@ public enum Territorios {
     }
 
     private Jogador ocupante;
-    private int tropas;
+    private ArrayList<Tropa> tropas;
     private final Continente continente;
 
     private Territorios(Continente continente) {
         this.continente = continente;
-        this.tropas = 1;
+        this.tropas = new ArrayList();
+        this.tropas.add(new Tropa());
     }
 
     public Continente getContinente() {
@@ -108,25 +110,39 @@ public enum Territorios {
         }
     }
 
+    private void removerTropa(int quantidade) {
+        for (int i = 0; i < quantidade; i++) {
+            if (this.tropas.size() > 0) {
+                this.tropas.remove(this.tropas.size() - 1);
+            }
+        }
+    }
+
+    private void addTropa(int quantidade) {
+        for (int i = 0; i < quantidade; i++) {
+            this.tropas.add(new Tropa());
+        }
+    }
+    
     public void diminuirTropas(Jogador jogador, int quantidade) {
+        int resultado = this.tropas.size() - quantidade;
+
         if (!jogador.equals(this.getOcupante())) {
             if (jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-                int resultado = this.tropas - quantidade;
 
                 if (resultado > 0) {
-                    this.tropas -= quantidade;
+                    this.removerTropa(resultado);
                 } else {
-                    this.tropas = 0;
+                    this.tropas.clear();
                     mudarOcupante(jogador);
                 }
             }
         } else {
-            int resultado = this.tropas - quantidade;
 
             if (resultado > 1) {
-                this.tropas -= quantidade;
+                this.removerTropa(resultado);
             } else {
-                this.tropas = 1;
+                this.removerTropa(this.tropas.size() - 1);
             }
         }
     }
@@ -136,11 +152,11 @@ public enum Territorios {
             if (this.getOcupante().getEstado().getEtapa() == Estados.Jogando.ATACANDO
                     || this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DESLOCANDO_TROPAS) {
 
-                if (vizinho(para)) {
+                if (this.vizinho(para)) {
                     if (this.getOcupante() == para.getOcupante()) {
                         if (this.getTropas() - tropas > 0) {
-                            this.tropas -= tropas;
-                            para.tropas += tropas;
+                            this.removerTropa(tropas);
+                            para.addTropa(tropas);
                         }
                     }
                 }
@@ -152,13 +168,13 @@ public enum Territorios {
     public void addTropas(int quantidade) {
         if (this.getOcupante() != null) {
             if (this.getOcupante().getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
-                tropas += quantidade;
+                this.addTropa(quantidade);
             }
         }
     }
 
     public int getTropas() {
-        return tropas;
+        return tropas.size();
     }
 
     public List<Territorios> getVizinhos() {

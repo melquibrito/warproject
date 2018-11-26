@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import jogadores.estado.Estado;
-import jogadores.estado.Estados;
-import partida.Observador;
-import partida.Partida;
-import partida.Sujeito;
+import jogadores.estado.*;
+import partida.*;
 import territorios.Territorios;
 
 public abstract class Jogador implements Sujeito {
@@ -40,10 +37,10 @@ public abstract class Jogador implements Sujeito {
     private Observador observador;
 
     public Jogador() {
-        setNickToDefault();
         this.avioes = 5;
         this.tropasADistribuir = 0;
         this.dado = new AtaqueTerrestre();
+        this.estado = new Jogando();
     }
 
     @Override
@@ -64,7 +61,7 @@ public abstract class Jogador implements Sujeito {
     }
 
     public void abandonarPartida() {
-        //delegar metodo para Estado
+        //atualizarEstado();
     }
 
     public void finalizarEtapa() {
@@ -83,8 +80,23 @@ public abstract class Jogador implements Sujeito {
         return estado;
     }
 
-    public void setNickToDefault() {
-        this.nick = this.toString();
+    public void atualizarEstado(Estados estado) {
+        switch (estado) {
+            case AGUARDANDO_A_VEZ:
+                this.estado = new Aguardando();
+                break;
+            case NA_VEZ:
+                this.estado = new Jogando();
+                break;
+            case MORTO:
+                this.estado = new Morto();
+                break;
+            case DESCONECTADO:
+                this.estado = new Desconectado();
+                break;
+            default:
+                this.estado = null;
+        }
     }
 
     public String getNick() {
@@ -123,9 +135,9 @@ public abstract class Jogador implements Sujeito {
     public void diminuirAvioes(int quantidade) {
         if (this.estado.getEtapa() == Estados.Jogando.ATACANDO) {
             int resultado = this.avioes - quantidade;
-            if(resultado > 0) {
+            if (resultado > 0) {
                 this.avioes -= quantidade;
-            }else {
+            } else {
                 this.avioes = 0;
             }
         }

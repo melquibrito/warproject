@@ -22,7 +22,11 @@ public enum Jogadores {
 
     @Override
     public String toString() {
-        return this.getJogador().getNick();
+        if(this.getJogador().getNick() == null) {
+            return this.getJogador().toString();
+        }else {
+            return this.getJogador().toString() + "(" + this.getJogador().getNick() + ")";
+        }
     }
 
     public void setPartida(Partida partida) {

@@ -3,14 +3,16 @@ package partida;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import jogadores.Jogador;
 import jogadores.Jogadores;
 import jogadores.estado.Estados.Jogando;
 
 public final class Partida implements Observador {
-
+    
+    static Random rand = new Random();
     private static Partida partida;
-    public List<Jogadores> jogadores;
+    public static List<Jogadores> jogadores;
     private Jogador jogador;
 
     private Partida() {
@@ -28,7 +30,35 @@ public final class Partida implements Observador {
             partida.jogadores = Collections.unmodifiableList(lista);
         }
     }
-
+    
+    public synchronized static void criar(String[] jogadores) {
+        if (partida == null && jogadores.length > 1 && jogadores.length < 7) {
+            partida = new Partida();
+            List<Jogadores> lista = new ArrayList();
+            ArrayList<Integer> retirado = new ArrayList();
+            
+            for(int i = 0; i < jogadores.length; i++) {
+                boolean repetido = false;
+                int j;
+                do{
+                    j = rand.nextInt(Jogador.jogadores.size());
+                    for(int x : retirado) {
+                        if(x == j) {
+                            repetido = true;
+                        }
+                    }
+                }while(repetido);
+                lista.add(Jogador.jogadores.get(j).getCor());
+                Jogador.jogadores.get(j).setNick(jogadores[i]);
+                Jogador.jogadores.get(j).setPartida(partida);
+                retirado.add(j);
+            }
+            Collections.shuffle(lista);
+            partida.jogadores = Collections.unmodifiableList(lista);
+        }
+    }
+    
+    //Template Method
     public void iniciar() {
         partida.sortearTerritorios();
         partida.sortearObjetivos();
@@ -40,7 +70,7 @@ public final class Partida implements Observador {
     }
 
     private void sortearTerritorios() {
-
+        
     }
 
     private void sortearObjetivos() {
