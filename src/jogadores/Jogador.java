@@ -29,7 +29,6 @@ public abstract class Jogador implements Sujeito {
 
     private Estado estado;
     private String nick;
-    private int tropas;
     private int avioes;
     private Ataque ataque;
     private int tropasADistribuir;
@@ -77,7 +76,7 @@ public abstract class Jogador implements Sujeito {
     public void alternarAtaque() {
         if (this.ataque instanceof AtaqueTerrestre && getAvioes() > 0) {
             this.ataque = new AtaqueAereo();
-        } else if (getTropas() > 0) {
+        } else {
             this.ataque = new AtaqueTerrestre();
         }
     }
@@ -118,14 +117,6 @@ public abstract class Jogador implements Sujeito {
             return ataque;
         }
         return null;
-    }
-
-    public int getTropas() {
-        return tropas;
-    }
-
-    public void setTropas(int tropas) {
-        this.tropas = tropas;
     }
 
     public int getAvioes() {

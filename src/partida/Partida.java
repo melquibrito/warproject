@@ -73,6 +73,7 @@ public final class Partida implements Observador {
     }
 
     private void sortearTerritorios() {
+        //Territorios.resetar();
         ArrayList<Territorios> aSortear = new ArrayList();
         aSortear.addAll(Arrays.asList(Territorios.values()));
         
@@ -86,10 +87,21 @@ public final class Partida implements Observador {
         
         for(Jogadores j : jog) {
             for(int i = 0; i < quantidade; i++) {
-                for(Territorios t : aSortear) {
-                
+                for(int t = 0; t < aSortear.size(); t++) {
+                    Territorios sorteado = aSortear.get(rand.nextInt(aSortear.size()));
+                    sorteado.setOcupante(j.getJogador());
+                    aSortear.remove(sorteado);
                 }
             }
+        }
+        
+        if(!aSortear.isEmpty()) {
+            aSortear.get(rand.nextInt(aSortear.size())).setOcupante(jogadores.get(jogadores.size() - 1).getJogador());
+            aSortear.get(0).setOcupante(jogadores.get(jogadores.size() - 2).getJogador());
+        }
+        
+        for(Territorios x : Territorios.values()) {
+            System.out.printf("%-20s %-15s %s%d%n", x, x.getOcupante().getCor(), "Tropas: ", x.getTropas());
         }
         
     }

@@ -127,8 +127,12 @@ public enum Territorios {
     }
 
     private void mudarOcupante(Jogador jogador) {
-        if (ocupante != jogador && jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-            ocupante = jogador;
+        if(jogador == null) {
+            this.ocupante = null;
+        }else {
+            if (this.ocupante != jogador && jogador.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+                this.ocupante = jogador;
+            }
         }
     }
 
@@ -448,5 +452,19 @@ public enum Territorios {
 
         return Collections.unmodifiableList(vizinhos);
     }
-
+    
+    public static void resetar() {
+        for(Territorios x : Territorios.values()) {
+            x.tropas = new ArrayList();
+            x.tropas.add(new Tropa());
+            x.mudarOcupante(null);
+        }
+    }
+    
+    public void setOcupante(Jogador jogador) {
+        if(this.ocupante == null) {
+            this.ocupante = jogador;
+        }
+    }
+    
 }
