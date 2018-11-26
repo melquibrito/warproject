@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import jogadores.estado.Estado;
+import jogadores.estado.Estados;
 import partida.Observador;
 import partida.Partida;
 import partida.Sujeito;
@@ -105,8 +106,16 @@ public abstract class Jogador implements Sujeito {
         return avioes;
     }
 
-    public void setAvioes(int avioes) {
-        this.avioes = avioes;
+    public void addAvioes(int quantidade) {
+        if(this.getEstado().getEtapa() == Estados.Jogando.DISTRIBUINDO_TROPAS) {
+            this.avioes += quantidade;
+        }
+    }
+    
+    public void diminuirAvioes(int quantidade) {
+        if(this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
+            this.avioes -= quantidade;
+        }
     }
 
     public int getTropasADistribuir() {

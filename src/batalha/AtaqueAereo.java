@@ -9,6 +9,7 @@ public final class AtaqueAereo implements Dado {
     @Override
     public void jogar(Jogador jogador, Territorios de, Territorios para) {
         if(!para.getOcupante().equals(jogador) && jogador.getAvioes() > 0) {
+            int[] perdas = calcularPerdas();
             
         }
     }
