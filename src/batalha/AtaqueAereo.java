@@ -4,7 +4,7 @@ import java.util.Random;
 import jogadores.Jogador;
 import territorios.Territorios;
 
-public final class AtaqueAereo implements Dado {
+public final class AtaqueAereo implements Ataque {
 
     @Override
     public void jogar(Jogador jogador, Territorios de, Territorios para) {

@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import jogadores.estado.*;
 import partida.*;
+import partida.objetivos.Objetivo;
 import territorios.Territorios;
 
 public abstract class Jogador implements Sujeito {
@@ -30,16 +31,17 @@ public abstract class Jogador implements Sujeito {
     private String nick;
     private int tropas;
     private int avioes;
-    private Dado dado;
+    private Ataque ataque;
     private int tropasADistribuir;
     private Partida partida;
+    private Objetivo objetivo;
 
     private Observador observador;
 
     public Jogador() {
         this.avioes = 5;
         this.tropasADistribuir = 0;
-        this.dado = new AtaqueTerrestre();
+        this.ataque = new AtaqueTerrestre();
         this.estado = new Jogando();
     }
 
@@ -50,7 +52,7 @@ public abstract class Jogador implements Sujeito {
 
     public void atacar(Territorios inimigo) {
         if (getAvioes() > 0 && getPartida() != null) {
-            this.estado.atacar(inimigo);
+            this.estado.atacar(this, null, inimigo);
         }
     }
 
@@ -61,18 +63,22 @@ public abstract class Jogador implements Sujeito {
     }
 
     public void abandonarPartida() {
-        //atualizarEstado();
+        estado.abandonarPartida(this);
     }
 
     public void finalizarEtapa() {
         this.estado.finalizarEtapa(this);
     }
-
+    
+    public void descolarTropas(Territorios de, Territorios para) {
+        this.estado.descolarTropas(this, de, para);
+    }
+    
     public void alternarAtaque() {
-        if (this.dado instanceof AtaqueTerrestre && getAvioes() > 0) {
-            this.dado = new AtaqueAereo();
+        if (this.ataque instanceof AtaqueTerrestre && getAvioes() > 0) {
+            this.ataque = new AtaqueAereo();
         } else if (getTropas() > 0) {
-            this.dado = new AtaqueTerrestre();
+            this.ataque = new AtaqueTerrestre();
         }
     }
 
@@ -107,9 +113,9 @@ public abstract class Jogador implements Sujeito {
         this.nick = nome;
     }
 
-    public Dado getDado() {
+    public Ataque getAtaque() {
         if (this.getPartida() != null && this.getEstado().getEtapa() == Estados.Jogando.ATACANDO) {
-            return dado;
+            return ataque;
         }
         return null;
     }

@@ -4,18 +4,19 @@ import jogadores.Jogador;
 import territorios.Territorios;
 
 public abstract class Estado {
-
-    public void atacar(Territorios inimigo) {
-        
-    }
     
     public void atacar(Jogador jogador, Territorios de, Territorios para) {
-        
+        System.out.println("Você ainda não pode atacar!");
     }
     
-    public void desconnectar() {
-        
+    public void descolarTropas(Jogador jogador, Territorios de, Territorios para) {
+        System.out.println("Deslocamento proibido!");
     }
+    
+    public void abandonarPartida(Jogador jogador) {
+        jogador.atualizarEstado(Estados.DESCONECTADO);
+    }
+    
     
     public void finalizarEtapa(Jogador jogador) {
         Estados.proximaFase(jogador);
@@ -25,10 +26,6 @@ public abstract class Estado {
     
     public Estados.Jogando getEtapa() {
         return getEstado().getEtapa();
-    }
-
-    public void setEstado(Estados estado) {
-        
     }
     
 }
